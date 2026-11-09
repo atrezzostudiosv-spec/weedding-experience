@@ -1,0 +1,22 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+<SiteLayout title="Begin a Conversation" description="Design-only contact experience; submissions are not yet enabled for this concept website." page="contact">
+  <section class="contact-layout" aria-labelledby="page-title">
+    <div class="contact-layout__intro">
+      <span class="section-label">05 / YOUR INVITATION</span>
+      <h1 id="page-title">Tell us about<br/><em>your moment.</em></h1>
+      <p>A thoughtful conversation is where every memorable occasion begins.</p>
+      <p class="demo-disclosure">This form is a design preview. It is not connected to the client and does not send messages.</p>
+    </div>
+    <form class="contact-form" aria-label="Contact form design preview">
+      <div class="contact-form__row"><label for="contact-name">Your name <span>*</span></label><input id="contact-name" name="name" type="text" autocomplete="name" placeholder="How should we address you?" required /></div>
+      <div class="contact-form__row"><label for="contact-email">Email address <span>*</span></label><input id="contact-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required /></div>
+      <div class="contact-form__row"><label for="contact-type">Your occasion</label><select id="contact-type" name="eventType"><option value="">Select an occasion</option><option value="wedding">Wedding</option><option value="private">Private event</option><option value="other">Something else</option></select></div>
+      <div class="contact-form__row"><label for="contact-date">Event date (optional)</label><input id="contact-date" name="eventDate" type="date" /></div>
+      <div class="contact-form__row"><label for="contact-message">A little about your celebration</label><textarea id="contact-message" name="message" rows="4" placeholder="Tell us what you're imagining..."></textarea></div>
+      <button type="button" class="form-preview-button" disabled aria-describedby="contact-disclosure">Inquiry sending not yet available <span aria-hidden="true">↗</span></button>
+      <p id="contact-disclosure" class="contact-form__note">The contact destination and privacy notice will be configured when the client provides verified details.</p>
+    </form>
+  </section>
+</SiteLayout>

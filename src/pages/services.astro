@@ -1,0 +1,18 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PrimaryAction from "../components/PrimaryAction.astro";
+const base = import.meta.env.BASE_URL;
+const services = [
+  ["01", "Weddings", "A thoughtful framework for a day that feels entirely personal."],
+  ["02", "Private Events", "An intimate approach to gathering and celebration."],
+  ["03", "Event Design", "Atmosphere, composition and the beauty of small details."],
+  ["04", "Event Coordination", "A considered view of timing, flow and experience."]
+];
+---
+<SiteLayout title="Services" description="Provisional service concepts for an Atrezzo Studios wedding website proposal." page="services">
+  <section class="services-header" aria-labelledby="page-title"><span class="section-label">03 / THE POSSIBILITIES</span><h1 id="page-title">Thoughtfully<br/><em>celebrated.</em></h1><p>Four provisional directions — presented as a design concept until the client confirms her services.</p></section>
+  <section class="services-editorial" aria-label="Proposed services"><div class="services-editorial__heading"><span class="section-label">EXPLORE THE EXPERIENCE</span><span>01 — 04</span></div>
+    {services.map(([number, name, copy]) => <article class="service-line"><span>{number}</span><h2>{name}</h2><p>{copy}</p></article>)}
+  </section>
+  <section class="services-end"><span class="section-label">YOUR NEXT CHAPTER</span><h2>Something worth gathering for.</h2><PrimaryAction href={base + "contact/"} label="Begin your inquiry"/></section>
+</SiteLayout>

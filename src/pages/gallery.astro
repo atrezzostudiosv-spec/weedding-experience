@@ -1,0 +1,16 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PrimaryAction from "../components/PrimaryAction.astro";
+import {images} from "../data/site.js";
+const base = import.meta.env.BASE_URL;
+const pictures = [
+  {src:images.reception,alt:"White floral wedding reception table with cane chairs."},
+  {src:images.hall,alt:"Illustrative ceremony reception hall with cream floral decorations."},
+  {src:images.expand,alt:"White wedding chairs surrounding a floral ceremony arch."}
+];
+---
+<SiteLayout title="Visual Stories" description="Inspirational wedding editorial photography selected for this design concept." page="gallery">
+  <section class="gallery-intro" aria-labelledby="page-title"><span class="section-label">04 / VISUAL STORIES</span><h1 id="page-title">The beauty of<br/><em>being together.</em></h1><p>A study of atmosphere, light and moments. These images are licensed editorial references, not events delivered by the client.</p></section>
+  <div class="gallery-preview" aria-label="Illustrative editorial references">{pictures.map((p, index)=><figure><img src={p.src} alt={p.alt} loading="lazy"/><figcaption>EDITORIAL STUDY / {String(index+1).padStart(2,"0")}</figcaption></figure>)}</div>
+  <section class="gallery-end"><h2>Every story starts somewhere.</h2><PrimaryAction href={base+"contact/"} label="Let's connect" subtle /></section>
+</SiteLayout>

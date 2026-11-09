@@ -1,0 +1,15 @@
+---
+const { href, label, dark = false, subtle = false, transition = true } = Astro.props;
+---
+{
+  subtle
+    ? <a class="ab-btn ab-underline" href={href} data-atz-link={transition ? true : undefined} data-atz-effect="veil">
+        <span>{label}</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" /></svg>
+        <span class="ab-underline__rule" aria-hidden="true"></span>
+      </a>
+    : <a class={"ab-btn ab-directional" + (dark ? " button-invert" : "")} href={href} data-ab-directional data-ab-side="left" data-atz-link={transition ? true : undefined} data-atz-effect="veil">
+        <span class="ab-directional__fill" aria-hidden="true"></span>
+        <span class="ab-directional__inner"><span>{label}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6" /></svg></span>
+      </a>
+}

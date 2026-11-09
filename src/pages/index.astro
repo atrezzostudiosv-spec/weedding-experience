@@ -1,0 +1,41 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PrimaryAction from "../components/PrimaryAction.astro";
+import {images} from "../data/site.js";
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Every Celebration Begins With A Feeling" description="An editorial concept for wedding planning and event design by Atrezzo Studios." page="home" homeScroll={true}>
+  <section class="hero" aria-labelledby="home-title">
+    <div class="hero__media" aria-hidden="true"><img src={images.hero} alt="" fetchpriority="high" decoding="async" /></div>
+    <div class="hero__shade"></div>
+    <div class="hero__top"><span>THE ART OF CELEBRATION</span><span>01 / 05</span></div>
+    <div class="hero__content">
+      <span class="hero__eyebrow">A considered approach to life’s meaningful moments</span>
+      <h1 id="home-title">Some moments<br/><em>stay forever.</em></h1>
+      <div class="hero__foot"><p>Beautifully imagined. Thoughtfully celebrated.</p><a class="hero__scroll" href="#our-perspective">Discover the experience <span aria-hidden="true">↓</span></a></div>
+    </div>
+    <span class="hero__side-note" aria-hidden="true">ATREZZO STUDIOS — EDITORIAL CONCEPT</span>
+  </section>
+  <section class="home-intro" id="our-perspective" aria-labelledby="intro-title">
+    <span class="section-label"><span class="gold-line"></span> THE POINT OF VIEW / 01</span>
+    <h2 id="intro-title">An occasion becomes <em>unforgettable</em> when every detail feels like it belongs.</h2>
+    <div class="home-intro__foot"><p>Created as an editorial exploration of weddings, private gatherings and meaningful celebrations. Every image in this concept is illustrative, not a client event portfolio.</p><PrimaryAction href={base + "about/"} label="Our perspective" subtle /></div>
+  </section>
+  <div class="ats-scope wedding-scroll" id="wedding-expand">
+    <section class="ats-scene ats-scene--expand" data-ats-effect="expand" aria-labelledby="wedding-expand-title">
+      <div class="ats-stage">
+        <div class="ats-center-photo ats-photo"><img src={images.expand} alt="Floral ceremony arch surrounded by white chairs; illustrative reference photography." loading="lazy" decoding="async" /></div>
+        <div class="ats-scene__bar"><strong>THE EXPERIENCE / 02</strong><span>SCULPTED BY THE MOMENT</span></div>
+        <div class="ats-title-overlay"><h2 id="wedding-expand-title">For the moments<br/><em>that matter.</em></h2><p>A celebration begins with a feeling — and grows through a thousand thoughtful details.</p></div>
+      </div>
+    </section>
+  </div>
+  <section class="home-closing" aria-labelledby="closing-title">
+    <div class="home-closing__index"><span class="section-label">A PERSONAL INVITATION / 03</span><span class="gold-star" aria-hidden="true">✳</span></div>
+    <div class="home-closing__body">
+      <h2 id="closing-title">Your story deserves<br/>a beautiful setting.</h2>
+      <p>Explore the vision behind this concept, or begin a conversation about an occasion worth remembering.</p>
+      <PrimaryAction href={base + "services/"} label="Explore the services" />
+    </div>
+  </section>
+</SiteLayout>

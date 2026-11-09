@@ -1,0 +1,18 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PrimaryAction from "../components/PrimaryAction.astro";
+import {images} from "../data/site.js";
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="The Philosophy" description="The editorial perspective behind The Wedding Experience concept." page="about">
+  <section class="editorial-page about-layout" aria-labelledby="page-title">
+    <div class="editorial-page__copy">
+      <span class="section-label">02 / THE PHILOSOPHY</span>
+      <h1 id="page-title">An eye for<br/><em>the meaningful.</em></h1>
+      <p>Considered ideas. Quiet elegance. Celebrations imagined around the feelings we never forget.</p>
+      <PrimaryAction href={base + "contact/"} label="Start a conversation" subtle />
+    </div>
+    <figure class="editorial-page__visual"><img src={images.details} alt="Illustrative wedding table setting with flowers and candles." loading="lazy" /><figcaption>Editorial inspiration · demonstration imagery</figcaption></figure>
+  </section>
+  <section class="after-page"><span class="section-label">A note on this concept</span><p>The identity, founder story and experience of the future business are not yet confirmed. This page explores a visual philosophy rather than claiming a biography.</p></section>
+</SiteLayout>
