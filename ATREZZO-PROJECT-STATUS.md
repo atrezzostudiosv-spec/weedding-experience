@@ -66,3 +66,10 @@ Ejecutar QA de navegador real sobre Home + navegación + transición en 375/768/
 - No se ha realizado despliegue en GitHub Pages ni publicación como web oficial.
 
 **Estado de componentes:** aprobados visualmente por el usuario; integración en Wedding: compilación estática verificada, comportamiento visual/funcional EN VALIDACIÓN.
+
+
+## Control QA adicional (2026-11-09)
+- GitHub Actions 42620841313: SUCCESS, artefacto Astro construido.
+- Inspección HTML estática del artefacto: 5 páginas con H1, robots noindex y 0 enlaces/archivos locales rotos; 9 JS originales con `node --check` PASS.
+- Prueba renderizada de navegador: NO REALIZADA porque el navegador del entorno bloqueó navegación a localhost con `net::ERR_BLOCKED_BY_ADMINISTRATOR`. Sin intentar eludir la restricción.
+- Evidencias, límites y trabajo pendiente: [docs/PHASE04-QA-RESULTS.md](docs/PHASE04-QA-RESULTS.md).
