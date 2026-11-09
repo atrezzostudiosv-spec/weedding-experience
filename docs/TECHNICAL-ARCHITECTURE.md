@@ -75,3 +75,8 @@ Estado: arquitectura técnica preparada; implementación aún no comenzada.
 
 ## Política de control
 Cambiar exclusivamente la integración de cada patrón. Un fallo reproducible se registra en ATREZZO-PROJECT-STATUS.md con ruta, viewport, evidencia, causa y resolución. No reinterpretar la aprobación original de la biblioteca.
+
+
+## Implementación posterior a esta planificación — 2026-11-09
+
+El árbol planificado arriba YA NO refleja una estructura inexistente. Ahora existen: astro.config.mjs, package.json, src/layouts/SiteLayout.astro, src/components/PrimaryAction.astro, src/pages/{index,about,services,gallery,contact}.astro, src/data/site.js, src/styles/site.css, scripts/{check-source,verify-dist}.mjs, y 9 motores exactos originales bajo public/atrezzo-core/. El sitio no ha sido publicado. El ciclo de build Astro está verificado por GitHub Actions; QA visual permanece pendiente. El video de Hero aún no está incluido.
