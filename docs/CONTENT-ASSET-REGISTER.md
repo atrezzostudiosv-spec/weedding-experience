@@ -50,3 +50,19 @@ Nombre fuente: 12279941_1920_1080_25fps.mp4
 3. Fotografías con derecho de uso y clasificación real/ilustrativa.
 4. Datos de contacto y destino del formulario reales.
 5. Textos de privacidad aplicables, autorización de publicación y eliminación o ajuste de noindex.
+
+
+## Imágenes editoriales utilizadas en Fase 04 (Unsplash; recursos externos)
+Licencia comprobada en https://unsplash.com/license (permite uso comercial y modificación, recomienda atribución). Las imágenes aquí no constituyen trabajos ejecutados por la clienta; las fotografías pueden mostrar diseño de terceros. El uso de marcas/personas identificables requiere prudencia adicional, por lo que se eligieron escenas decorativas sin personas reconocibles.
+
+| Photo ID | Photographer | Página de origen | Uso en concepto |
+|---|---|---|---|
+| photo-1769812344099-8e52466aea8e | Jonathan Borba | https://unsplash.com/photos/elegant-table-setting-with-white-flowers-and-candles-2IxNtgbd2R8 | Hero decorativo, preview menú |
+| photo-1757589227072-0dd17af42433 | Bruno Ngarukiye | https://unsplash.com/photos/floral-archway-with-chairs-set-for-a-wedding-ceremony-zZ4hsQfse7o | Home Scroll Expand, preview menú |
+| photo-1779308936221-89739e035a53 | Simply thrilled | https://unsplash.com/photos/elegant-wedding-reception-hall-with-floral-archway-and-white-decor-65mh04qlcBU | Preview menú y Gallery |
+| photo-1769812343775-85a27e6a076c | Jonathan Borba | https://unsplash.com/photos/elegant-wedding-reception-table-with-floral-centerpiece-and-chairs-QvprbCoOkLY | Services/Gallery/preview de menú |
+| photo-1775126964424-913480443772 | Ben Atkins | https://unsplash.com/photos/a-beautifully-set-table-for-a-wedding-reception-zjJiX9txwRU | About/Gallery/preview menú |
+
+Se cargan desde images.unsplash.com; son imágenes ilustrativas externas, no archivos propiedad del cliente ni alojados en GitHub. Revisar carga, privacidad, rendimiento y licencia en QA; sustituirlas por media oficial antes de publicar el website definitivo.
+
+**Video adjunto:** se conserva solo como referencia histórica de la propuesta. No fue incluido en código, commit ni despliegue por permiso de publicación no verificado.
