@@ -4,7 +4,7 @@ Actualizado: 2026-11-09
 Responsable de dirección: ATREZZO STUDIOS
 Repositorio: https://github.com/atrezzostudiosv-spec/weedding-experience
 Estado de publicación: NO PUBLICAR COMO SITIO OFICIAL
-Fase actual: 03 — PREPARACIÓN TÉCNICA DOCUMENTADA. SIGUIENTE: BOOTSTRAP E INTEGRACIÓN CONTROLADA.
+Fase actual: 04 — BASE TÉCNICA IMPLEMENTADA; VALIDACIÓN VISUAL Y FUNCIONAL PENDIENTE.
 
 ## Decisiones cerradas — no reabrir sin causa
 - Propuesta comercial demostrativa, no web oficial de la clienta.
@@ -28,13 +28,13 @@ Fase actual: 03 — PREPARACIÓN TÉCNICA DOCUMENTADA. SIGUIENTE: BOOTSTRAP E IN
 - Se decide arquitectura de salida HTML multipágina estática, mediante Astro SSG como herramienta de construcción, sin enrutador SPA ni hidratación de framework para los motores Atrezzo.
 - Se documentan estructura de carpetas, carga selectiva de componentes, ciclo de vida, alcance de contenidos, QA y condiciones de publicación.
 - No se copian previews, fotografías de otros clientes, fuentes de terceros ni ZIPs maestros al repositorio.
-- No se ha programado ninguna página, instalado dependencias, publicado una demo ni ejecutado QA de integración del nuevo sitio.
+- Estado histórico de la Fase 03. Sustituido por el registro de avance Fase 04 al final del documento.
 
 ## Registro de fase
 - FASE 01: AUDITORÍA ESTRATÉGICA — CERRADA.
 - FASE 02: DIRECCIÓN ARTÍSTICA Y PARTITURA DE CINCO PÁGINAS — APROBADA POR EL USUARIO.
 - FASE 03: PREPARACIÓN TÉCNICA DOCUMENTAL — CERRADA. Sin integración ni pruebas web.
-- FASE 04: BASE ESTÁTICA + INTEGRACIÓN DE COMPONENTES — PENDIENTE.
+- FASE 04: BASE ESTÁTICA, MOTOR DE NAVEGACIÓN, TRANSICIÓN, BOTONES Y HOME EXPAND — IMPLEMENTADOS; CI APROBADO; QA VISUAL PENDIENTE.
 - FASE 05: QA RESPONSIVE / SCROLL / ACCESIBILIDAD — PENDIENTE.
 - FASE 06: PRESENTACIÓN DE DEMO Y ACEPTACIÓN — PENDIENTE.
 - FASE 07: PERSONALIZACIÓN CON DATOS REALES Y PUBLICACIÓN AUTORIZADA — BLOQUEADA.
@@ -48,4 +48,21 @@ Fase actual: 03 — PREPARACIÓN TÉCNICA DOCUMENTADA. SIGUIENTE: BOOTSTRAP E IN
 - La URL Wix anterior no fue inspeccionada directamente: no declarar auditoría visual verificada.
 
 ## Próxima acción única
-Construir el esqueleto Astro SSG multipágina y migrar SOLO el motor necesario para la navegación y la primera escena del Home, desde fuentes originales exactas de COMPONENTES.zip. Integrar sin rediseñar el componente, registrar cada archivo y validar viewport, teclado, reduced-motion y sin JS antes de avanzar al resto.
+Ejecutar QA de navegador real sobre Home + navegación + transición en 375/768/1024/1440 px, teclado, reduced-motion, no-JS y scroll inverso. Resolver defectos antes de introducir nuevas escenas.
+
+
+## Registro factual añadido — FASE 04 (2026-11-09, último commit de integración: 4344bfeefd)
+
+- Implementado código Astro SSG para Home, About, Services, Gallery y Contact.
+- Integrados exactamente los 9 archivos originales de los motores Navigation 01, Transitions 01 (incluido preflight), Buttons 01 y Scroll Sections 01. Comprobados hashes Git del repositorio contra archivos fuente locales: IDÉNTICOS BYTE A BYTE.
+- Cargados selectivamente: Scroll Sections 01 solo en Home; navegación, VEIL y Buttons en todas las rutas.
+- Implementados tokens #FFFFFF, #111111, #B59A60; rutas con base /weedding-experience/ y robots noindex,nofollow.
+- Hero actual: foto de Unsplash registrada. El video aportado NO se ha subido ni integrado por derechos de uso pendientes.
+- Home: elemento estructural Scroll Sections Expand con inicialización explícita y contenido semántico sin JS. Handoff todavía no implementado.
+- About, Services, Gallery y Contact: cimientos editoriales navegables; los motores Layered, Atlas, Gallery Index y Lightbox aún NO están integrados.
+- Contact: formulario de demostración visiblemente deshabilitado; no hay envío a backend.
+- GitHub Actions ejecución 42620422540 (commit 4344bfeefd): PASS en npm install, source check y Astro build + dist check.
+- No se han ejecutado ni certificado todavía pruebas reales de navegador, visual responsive, imágenes en red, teclado, transiciones, scroll inverso o movimiento reducido.
+- No se ha realizado despliegue en GitHub Pages ni publicación como web oficial.
+
+**Estado de componentes:** aprobados visualmente por el usuario; integración en Wedding: compilación estática verificada, comportamiento visual/funcional EN VALIDACIÓN.
