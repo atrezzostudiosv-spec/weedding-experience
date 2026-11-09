@@ -1,0 +1,68 @@
+/* ATREZZO NAVIGATION 01 — standalone component styles. No framework dependencies.
+   Classes prefixed azn1 to avoid collisions. Keep design tokens adjustable per project. */
+.azn1{--azn1-ink:#e8e9e2;--azn1-muted:#abb7ae;--azn1-accent:#b7d7c6;--azn1-bg:#0d1411;--azn1-paper:#e7e7dd;--azn1-dark:#111915;--azn1-edge:rgba(216,232,220,.18);--azn1-ease:cubic-bezier(.22,1,.36,1);font-family:Arial,Helvetica,sans-serif}
+.azn1 *{box-sizing:border-box}.azn1 button,.azn1 a{-webkit-tap-highlight-color:transparent}.azn1 :is(button,a):focus-visible{outline:2px solid #bde5cf;outline-offset:5px}
+.azn1 .azn1-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+body.azn1-menu-active{overflow:hidden}
+/* PATTERN A: IMMERSIVE MENU */
+.azn1 .azn1-menutrigger{font:700 11px/1.2 Arial,sans-serif;letter-spacing:.17em;text-transform:uppercase;color:var(--azn1-ink);background:transparent;border:1px solid rgba(243,250,245,.4);padding:15px 18px;cursor:pointer;display:none;align-items:center;gap:18px;position:relative;z-index:7;transition:background .2s,color .2s}
+.azn1 .azn1-menutrigger:hover{background:#d4e5d9;color:#0e1912}
+.azn1 .azn1-menutrigger__glyph{width:22px;height:12px;display:flex;flex-direction:column;justify-content:space-between}
+.azn1 .azn1-menutrigger__glyph::before,.azn1 .azn1-menutrigger__glyph::after{content:'';height:1px;background:currentColor;width:22px}
+.azn1 .azn1-fallback-nav{display:flex;gap:25px;font:600 10px/1.3 Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.azn1 .azn1-fallback-nav a{text-decoration:none;color:var(--azn1-ink)}
+.azn1.azn1-ready .azn1-menutrigger{display:inline-flex}.azn1.azn1-ready .azn1-fallback-nav{display:none}
+.azn1-menu{position:fixed;inset:0;z-index:900;display:grid;grid-template-columns:minmax(0,1.13fr) minmax(0,.87fr);background:#101a15;color:#f0f0e8;opacity:0;visibility:hidden;pointer-events:none;clip-path:inset(0 0 100% 0);transition:opacity .38s,clip-path .78s cubic-bezier(.76,0,.18,1),visibility 0s .8s}
+.azn1-menu[hidden]{display:none!important}.azn1-menu.is-opening,.azn1-menu.is-open{visibility:visible;pointer-events:auto;opacity:1;clip-path:inset(0 0 0 0);transition:opacity .25s,clip-path .78s cubic-bezier(.76,0,.18,1),visibility 0s}
+.azn1-menu__left{min-width:0;padding:clamp(26px,4vw,72px);display:flex;flex-direction:column;justify-content:space-between;z-index:1}
+.azn1-menu__top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.azn1-menu__brand{font-size:13px;font-weight:900;letter-spacing:.28em}.azn1-menu__close{background:transparent;color:#e7ebe5;border:1px solid #82988a;font:700 11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:12px 16px;cursor:pointer}
+.azn1-menu__eyebrow,.azn1-menu__footer{font:600 10px/1.5 Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#9aaea1}
+.azn1-menu__links{list-style:none;padding:40px 0;margin:0;display:flex;flex-direction:column;gap:0}
+.azn1-menu__links li{border-bottom:1px solid #3b4b41;overflow:hidden}.azn1-menu__links li:first-child{border-top:1px solid #3b4b41}
+.azn1-menu__links a{display:flex;align-items:baseline;gap:20px;justify-content:space-between;padding:clamp(12px,1.8vh,26px) 0;text-decoration:none;color:#e8e9e2;line-height:1.0;transform:translateY(110%);transition:transform .72s var(--azn1-ease),color .3s;outline-offset:-3px}
+.azn1-menu.is-open .azn1-menu__links a{transform:translateY(0)}
+.azn1-menu__links li:nth-child(2) a{transition-delay:.07s}.azn1-menu__links li:nth-child(3) a{transition-delay:.12s}.azn1-menu__links li:nth-child(4) a{transition-delay:.17s}
+.azn1-menu__links strong{font:400 clamp(39px,5.7vw,92px)/1 Georgia,serif;letter-spacing:-.075em;font-weight:400}
+.azn1-menu__links a:hover,.azn1-menu__links a:focus-visible{color:#b8d9c5}
+.azn1-menu__links em{font-size:11px;font-style:normal;color:#9fb1a7;letter-spacing:.14em}
+.azn1-menu__photo{position:relative;overflow:hidden;background:#202e25}
+.azn1-menu__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .55s,transform 1.35s var(--azn1-ease)}
+.azn1-menu__photo img.is-active{opacity:1;transform:scale(1)}.azn1-menu__photo::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,22,14,.6),transparent 50%)}
+.azn1-menu__caption{position:absolute;bottom:clamp(25px,4vw,60px);left:clamp(25px,4vw,60px);z-index:1;font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+/* PATTERN B: CHAPTER RAIL */
+.azn1 .azn1-rail-layout{display:grid;grid-template-columns:minmax(180px,21%) minmax(0,1fr);gap:clamp(24px,4.5vw,80px)}
+.azn1 .azn1-rail{align-self:stretch;position:relative;z-index:1}.azn1 .azn1-rail__inner{position:sticky;top:96px;padding:22px 0 30px}
+.azn1 .azn1-rail__eyebrow{display:block;font:700 10px/1.5 Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#718678;margin:0 0 32px}
+.azn1 .azn1-rail__list{display:grid;gap:0;list-style:none;margin:0;padding:0;border-left:1px solid #b9bcb4}
+.azn1 .azn1-rail__list a{position:relative;text-decoration:none;display:flex;gap:12px;align-items:center;padding:16px 0 16px 21px;font:600 12px/1.4 Arial,sans-serif;color:#67776c;transition:color .2s}
+.azn1 .azn1-rail__list a::before{content:'';position:absolute;left:-2px;top:15%;height:70%;width:3px;background:#243b2d;transform:scaleY(0);transition:transform .35s var(--azn1-ease);transform-origin:top}
+.azn1 .azn1-rail__list a.is-active{color:#18281d}.azn1 .azn1-rail__list a.is-active::before{transform:scaleY(1)}
+.azn1 .azn1-rail__list a small{font:700 9px Arial,sans-serif;letter-spacing:.12em;color:#7a8b7f}
+.azn1 .azn1-rail__progress{height:2px;margin-top:30px;background:#bec7bf;overflow:hidden}.azn1 .azn1-rail__fill{display:block;height:100%;background:#294a35;width:0;transition:width .17s linear}
+.azn1 .azn1-chapter{scroll-margin-top:80px;min-height:75vh;padding:clamp(56px,7vw,120px) 0;border-top:1px solid #c6cbc4;display:grid;align-content:center;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:clamp(24px,3vw,55px);align-items:center}
+.azn1 .azn1-chapter:nth-child(2){grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)}.azn1 .azn1-chapter:nth-child(2) .azn1-chapter__visual{order:-1}
+.azn1 .azn1-chapter__number{display:block;font:700 10px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#647a67;margin-bottom:25px}
+.azn1 .azn1-chapter h3{font:400 clamp(44px,5.8vw,93px)/.96 Georgia,serif;letter-spacing:-.075em;color:#16241a;margin:0 0 28px}.azn1 .azn1-chapter h3 em{font-weight:400;color:#7e9886}
+.azn1 .azn1-chapter p{line-height:1.75;max-width:350px;font-size:15px;color:#546759}
+.azn1 .azn1-chapter__visual{margin:0;position:relative;overflow:hidden;aspect-ratio:4/5;background:#d3d5cb}.azn1 .azn1-chapter__visual img{width:100%;height:100%;display:block;object-fit:cover;transition:transform 1.2s var(--azn1-ease)}
+.azn1 .azn1-chapter.is-current .azn1-chapter__visual img{transform:scale(1.025)}
+.azn1 .azn1-chapter__visual figcaption{position:absolute;bottom:18px;left:18px;right:18px;background:#0e1b14b0;backdrop-filter:blur(8px);color:#e6e9df;padding:10px 13px;font-size:9px;letter-spacing:.11em;text-transform:uppercase}
+/* PATTERN C: CONTEXT DOCK / PROJECT SELECTOR */
+.azn1 .azn1-project-stage{position:relative;height:min(86svh,810px);min-height:430px;background:#1a2520;overflow:hidden}
+.azn1 .azn1-project{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .75s var(--azn1-ease),visibility 0s .76s}
+.azn1 .azn1-project.is-active{opacity:1;visibility:visible;transition:opacity .75s var(--azn1-ease),visibility 0s}
+.azn1 .azn1-project img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.1s var(--azn1-ease)}
+.azn1 .azn1-project.is-active img{transform:scale(1)}.azn1 .azn1-project::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#07100bbb 0%,transparent 70%),linear-gradient(0deg,#07100ba8 0%,transparent 45%)}
+.azn1 .azn1-project__copy{position:absolute;left:clamp(25px,8vw,130px);right:25px;bottom:clamp(110px,16vh,190px);z-index:1;color:#f1f1e9}.azn1 .azn1-project__copy small{letter-spacing:.2em;text-transform:uppercase;font-size:11px;color:#d5e0d5}
+.azn1 .azn1-project__copy h3{font:400 clamp(55px,9vw,134px)/.94 Georgia,serif;letter-spacing:-.075em;margin:16px 0;max-width:940px}.azn1 .azn1-project__copy p{font-size:14px;line-height:1.7;max-width:400px}
+.azn1 .azn1-dock{position:fixed;z-index:100;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translate(-50%,calc(100% + 110px));opacity:0;visibility:hidden;pointer-events:none;display:flex;align-items:center;gap:clamp(8px,2vw,25px);padding:10px 12px 10px 21px;background:#e8ebe1;color:#192b1e;box-shadow:0 18px 52px #0006;border-radius:2px;max-width:calc(100vw - 26px);transition:transform .55s var(--azn1-ease),opacity .35s,visibility 0s .55s}
+.azn1 .azn1-dock.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0);transition:transform .55s var(--azn1-ease),opacity .35s,visibility 0s}
+.azn1 .azn1-dock__id{font:700 9px/1.4 Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;color:#4f6557}
+.azn1 .azn1-dock__meta{min-width:clamp(130px,18vw,260px);max-width:260px;display:grid;gap:6px}.azn1 .azn1-dock__title{font:400 clamp(18px,1.9vw,28px)/1.15 Georgia,serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.azn1 .azn1-dock__progress{display:block;height:2px;background:#b0c0b1;position:relative;overflow:hidden}.azn1 .azn1-dock__progress span{position:absolute;inset:0 auto 0 0;background:#183b29;width:33.33%;transition:width .45s}
+.azn1 .azn1-dock__controls{display:flex;gap:6px}.azn1 .azn1-dock button{width:48px;height:48px;display:grid;place-items:center;border:1px solid #a5b9a9;background:transparent;color:#243d2b;font-size:20px;cursor:pointer}.azn1 .azn1-dock button:hover{background:#233d2c;color:white}.azn1 .azn1-dock button:focus-visible{outline-color:#294c31}
+/* responsive */
+@media(max-width:900px){.azn1-menu{grid-template-columns:1fr 39%}.azn1-menu__left{padding:clamp(24px,4vw,45px)}.azn1-menu__links strong{font-size:clamp(35px,6.5vw,58px)}.azn1 .azn1-rail-layout{grid-template-columns:1fr}.azn1 .azn1-rail__inner{position:sticky;top:0;background:#e7e7ddf0;backdrop-filter:blur(12px);padding:12px 0;z-index:5}.azn1 .azn1-rail__eyebrow{display:none}.azn1 .azn1-rail__list{display:flex;border-left:0;border-bottom:1px solid #b6bdb4}.azn1 .azn1-rail__list li{flex:1}.azn1 .azn1-rail__list a{padding:14px 6px;justify-content:center;font-size:11px;white-space:nowrap}.azn1 .azn1-rail__list a::before{left:8%;top:auto;bottom:-2px;width:84%;height:3px;transform:scaleX(0)}.azn1 .azn1-rail__list a.is-active::before{transform:scaleX(1)}.azn1 .azn1-rail__progress{margin-top:0}.azn1 .azn1-chapter{scroll-margin-top:130px}}
+@media(max-width:620px){.azn1-menu{display:block}.azn1-menu__left{min-height:100%;padding:25px 22px}.azn1-menu__photo{position:absolute;inset:0;opacity:.2;pointer-events:none}.azn1-menu__photo::after{background:#07120ba6}.azn1-menu__left{position:relative;z-index:2}.azn1-menu__links strong{font-size:clamp(43px,13vw,74px)}.azn1-menu__links a{padding:18px 0}.azn1-menu__caption{display:none}.azn1 .azn1-chapter,.azn1 .azn1-chapter:nth-child(2){grid-template-columns:1fr;gap:30px;min-height:0;padding:60px 0}.azn1 .azn1-chapter:nth-child(2) .azn1-chapter__visual{order:0}.azn1 .azn1-chapter__visual{aspect-ratio:4/3}.azn1 .azn1-chapter h3{font-size:clamp(50px,13vw,76px)}.azn1 .azn1-rail__list a{font-size:10px}.azn1 .azn1-rail__list a small{display:none}.azn1 .azn1-project-stage{min-height:500px;height:77svh}.azn1 .azn1-project__copy{left:22px;bottom:155px}.azn1 .azn1-project__copy h3{font-size:clamp(56px,14vw,92px)}.azn1 .azn1-dock{width:calc(100vw - 26px);padding:9px 9px 9px 13px;justify-content:space-between;gap:8px}.azn1 .azn1-dock__id{display:none}.azn1 .azn1-dock__meta{min-width:0;flex:1}.azn1 .azn1-dock__title{font-size:19px}.azn1 .azn1-dock button{width:43px;height:43px}}
+@media(prefers-reduced-motion:reduce){.azn1-menu,.azn1-menu__links a,.azn1-menu__photo img,.azn1 .azn1-dock,.azn1 .azn1-project,.azn1 .azn1-project img,.azn1 .azn1-rail__list a::before,.azn1 .azn1-chapter__visual img{transition:none!important;animation:none!important}.azn1-menu__links a{transform:none!important}.azn1 .azn1-project.is-active img{transform:none}}

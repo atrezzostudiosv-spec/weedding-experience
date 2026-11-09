@@ -1,0 +1,156 @@
+/* ATREZZO BUTTONS 01 — independent, reusable components; v1.0 */
+/* Global themes are set by the host site. These are library fallbacks. */
+:root {
+  --ab-ink: #14201b;
+  --ab-paper: #f2efe8;
+  --ab-accent: #cdb68f;
+  --ab-accent-ink: #17201a;
+  --ab-ease: cubic-bezier(.19,1,.22,1);
+}
+.ab-btn {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  font: 500 13px/1.2 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: .035em;
+  text-decoration: none;
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  isolation: isolate;
+  user-select: none;
+}
+.ab-btn:focus-visible {outline: 2px solid currentColor; outline-offset: 5px;}
+.ab-btn svg {width: 19px; height: 19px; fill:none; stroke:currentColor; stroke-width:1.55; stroke-linecap:round; stroke-linejoin:round; flex:none;}
+/* 01 — bubble arrow */
+.ab-bubble {
+  color: var(--ab-ink);
+  min-height: 66px;
+  padding: 7px 8px 7px 24px;
+  gap: 30px;
+  border: 1px solid currentColor;
+  border-radius: 100px;
+  transition: background .35s, color .35s, border-color .35s;
+}
+.ab-bubble__orb {
+  position:relative; isolation:isolate;
+  display:grid; place-items:center; flex:none;
+  width:49px; height:49px; border-radius:50%;
+  border: 1px solid currentColor;
+  overflow:hidden;
+}
+.ab-bubble__orb::before {
+  content:""; position:absolute; inset:-2px; border-radius:50%;
+  background:var(--ab-ink); z-index:-1;
+  transform:scale(0); transform-origin:center;
+  transition: transform .5s var(--ab-ease);
+}
+.ab-bubble__orb svg {transition:transform .5s var(--ab-ease), color .35s;}
+.ab-bubble:hover .ab-bubble__orb::before,
+.ab-bubble:focus-visible .ab-bubble__orb::before {transform:scale(1);}
+.ab-bubble:hover .ab-bubble__orb svg,
+.ab-bubble:focus-visible .ab-bubble__orb svg {color:var(--ab-paper);transform: translate(2px,-2px);}
+/* 02 — directional hover reveal */
+.ab-directional {
+  min-height: 67px;
+  min-width: 232px;
+  color:var(--ab-paper);
+  border:1px solid rgba(242,239,232,.66);
+  border-radius:3px;
+  overflow:hidden;
+  transition:border-color .35s;
+}
+.ab-directional__fill {
+  position:absolute; inset:0; z-index:-1;
+  background:var(--ab-accent);
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path .55s var(--ab-ease);
+}
+.ab-directional[data-ab-side="right"] .ab-directional__fill {clip-path:inset(0 0 0 100%);}
+.ab-directional[data-ab-side="top"] .ab-directional__fill {clip-path:inset(0 0 100% 0);}
+.ab-directional[data-ab-side="bottom"] .ab-directional__fill {clip-path:inset(100% 0 0 0);}
+.ab-directional:hover .ab-directional__fill,
+.ab-directional:focus-visible .ab-directional__fill {clip-path:inset(0);}
+.ab-directional:hover,
+.ab-directional:focus-visible {color:var(--ab-accent-ink); border-color:var(--ab-accent);}
+.ab-directional__inner {display:inline-flex;align-items:center;justify-content:space-between;gap:28px;width:100%;padding:0 22px;}
+.ab-directional__inner svg {transition: transform .45s var(--ab-ease);}
+.ab-directional:hover svg,.ab-directional:focus-visible svg {transform:translateX(5px);}
+/* 03 — editorial underline */
+.ab-underline {
+  padding:15px 0 17px; gap:20px;
+  min-height:48px;
+  font-size:clamp(18px, 2vw, 26px);
+  font-weight:400;
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing:-.025em;
+  color:var(--ab-ink);
+}
+.ab-underline__rule {
+  position:absolute;left:0;right:0;bottom:8px;height:1px;
+  background:currentColor;
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .65s var(--ab-ease);
+}
+.ab-underline svg {width:22px;height:22px;transition:transform .55s var(--ab-ease);}
+.ab-underline:hover .ab-underline__rule,
+.ab-underline:focus-visible .ab-underline__rule {transform:scaleX(1);}
+.ab-underline:hover svg,.ab-underline:focus-visible svg {transform:translate(4px,-4px);}
+/* 04 — subtle magnetic; pointer movement applied to the inner ring, not hit target */
+.ab-magnetic {
+  width:176px; height:176px;
+  border-radius:50%;
+  color:var(--ab-paper);
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+}
+.ab-magnetic__disc {
+  position:absolute;inset:11px;border:1px solid rgba(242,239,232,.6);border-radius:50%;
+  display:flex;align-items:center;justify-content:center; flex-direction:column;gap:13px;
+  background:rgba(242,239,232,.025);
+  transform:translate3d(var(--ab-x,0px),var(--ab-y,0px),0);
+  transition:transform .43s var(--ab-ease), background .3s, border-color .3s;
+  will-change:transform;
+}
+.ab-magnetic svg {width:30px;height:30px;transition:transform .4s var(--ab-ease);}
+.ab-magnetic:hover .ab-magnetic__disc,.ab-magnetic:focus-visible .ab-magnetic__disc {background:rgba(242,239,232,.09);border-color:var(--ab-accent);}
+.ab-magnetic:hover svg,.ab-magnetic:focus-visible svg {transform:translate(3px,-3px);}
+/* 05 — character stagger. JS enhances; without JS it remains ordinary visible text. */
+.ab-stagger {
+  padding:0 25px; min-height:70px;
+  color:var(--ab-ink);
+  background:var(--ab-accent);
+  border-radius:2px;
+  min-width:240px;
+  overflow:hidden;
+  transition:background .35s;
+}
+.ab-stagger__track {height:21px; width:100%; display:block; position:relative;overflow:hidden;}
+.ab-stagger__line {display:block; white-space:nowrap; text-align:center;}
+.ab-stagger__line--secondary {display:none;}
+.ab-stagger[data-ab-ready] .ab-stagger__line {position:absolute;top:0;left:0;width:100%;display:flex;justify-content:center;}
+.ab-stagger[data-ab-ready] .ab-stagger__char {display:inline-block;white-space:pre;transform:translateY(0);transition:transform .67s var(--ab-ease);transition-delay:calc(var(--i) * 22ms);}
+.ab-stagger[data-ab-ready] .ab-stagger__line--secondary .ab-stagger__char {transform:translateY(125%);}
+.ab-stagger[data-ab-ready]:hover .ab-stagger__line--primary .ab-stagger__char,
+.ab-stagger[data-ab-ready]:focus-visible .ab-stagger__line--primary .ab-stagger__char {transform:translateY(-125%);}
+.ab-stagger[data-ab-ready]:hover .ab-stagger__line--secondary .ab-stagger__char,
+.ab-stagger[data-ab-ready]:focus-visible .ab-stagger__line--secondary .ab-stagger__char {transform:translateY(0);}
+/* Shared fallback: accessibility and preview's motion override. */
+@media (prefers-reduced-motion: reduce) {
+  .ab-btn,.ab-btn *, .ab-btn::before,.ab-btn::after,
+  .ab-btn *::before,.ab-btn *::after { transition-duration:0.01ms!important; animation-duration:0.01ms!important; transform:none!important; }
+  .ab-stagger[data-ab-ready] .ab-stagger__line--secondary{display:none!important;}
+  .ab-stagger[data-ab-ready] .ab-stagger__line--primary .ab-stagger__char{transform:none!important;}
+}
+html[data-ab-motion="off"] .ab-btn,html[data-ab-motion="off"] .ab-btn *,
+html[data-ab-motion="off"] .ab-btn *::before,html[data-ab-motion="off"] .ab-btn *::after {transition:none!important;animation:none!important;}
+html[data-ab-motion="off"] .ab-stagger__line--secondary {display:none!important;}
+html[data-ab-motion="off"] .ab-stagger__line--primary .ab-stagger__char {transform:none!important;}
+@media (hover:none) {
+  .ab-bubble__orb::before {transform:scale(1);}
+  .ab-bubble__orb svg {color:var(--ab-paper);}
+  .ab-underline__rule {transform:scaleX(1);}
+  .ab-directional__fill {transition:none;}
+}
