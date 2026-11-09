@@ -39,3 +39,11 @@ Estos componentes siguen aprobados, pero NO se cargan por defecto. No añadir ef
 - Los motores centrales descritos utilizan JavaScript y CSS propios sin GSAP, Lenis, React o npm en runtime.
 - ELEGANT_MASSAGE_01_HERO_ARCHIVOS.zip, ELEGANT_MASSAGE_02_SCROLL_SECCIONES_ORIGINALES.zip y ELITE_REAL_ESTATE_ARCHIVO_20261104_084844.zip son paquetes de proyecto/referencia; no copiarlos al nuevo sitio.
 - Ningún QA de Wedding está realizado; las pruebas documentadas dentro de ZIP se refieren a demos originales y no certifican esta integración.
+
+
+## Estado real Fase 04 — 2026-11-09
+
+- INTEGRADOS EN CÓDIGO, HASHES EXACTOS: Navigation 01, Transitions 01 (VEIL + preflight), Buttons 01, Scroll Sections 01 Expand.
+- QA AUTOMÁTICO: npm install, check:source, astro build, verify-dist = PASS (GitHub Actions run 42620422540).
+- NO SE HA PROBADO EN NAVEGADOR: los cuatro motores mencionados. Su estado es **EN VALIDACIÓN** y las verificaciones visuales (375/768/1024/1440, reduced-motion, teclado, no-JS, imágenes y scroll) siguen pendientes.
+- Scroll 02 Handoff, About Scroll 03 Layered, Services Atlas, Gallery Index, Modals Lightbox: **NO INTEGRADOS** todavía; no confundir el esqueleto de página con su motor cinematográfico definitivo.
