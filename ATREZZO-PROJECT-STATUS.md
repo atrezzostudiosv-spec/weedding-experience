@@ -73,3 +73,15 @@ Ejecutar QA de navegador real sobre Home + navegación + transición en 375/768/
 - Inspección HTML estática del artefacto: 5 páginas con H1, robots noindex y 0 enlaces/archivos locales rotos; 9 JS originales con `node --check` PASS.
 - Prueba renderizada de navegador: NO REALIZADA porque el navegador del entorno bloqueó navegación a localhost con `net::ERR_BLOCKED_BY_ADMINISTRATOR`. Sin intentar eludir la restricción.
 - Evidencias, límites y trabajo pendiente: [docs/PHASE04-QA-RESULTS.md](docs/PHASE04-QA-RESULTS.md).
+
+
+## PREVIEW GITHUB PAGES — ACTIVADO Y DESPLEGADO (2026-11-09)
+- El usuario habilitó GitHub Pages con `main` como fuente.
+- La primera ejecución de `pages build and deployment` falló por intentar procesar el código fuente Astro con Jekyll (`Invalid YAML front matter in src/layouts/SiteLayout.astro`); no era un error de compilación Astro.
+- Se incluyeron en la raíz de `main` los 5 documentos HTML compilados, el CSS generado y nueve archivos originales Atrezzo Core; se añadió `.nojekyll` para servir estáticos sin Jekyll.
+- Commit de publicación: `c9d78ec25e226440ee9bd93c4c1276238979a76f`.
+- GitHub Pages run `42645049876`: **SUCCESS** (build+deploy); URL confirmada por log: https://atrezzostudiosv-spec.github.io/weedding-experience/
+- Build de fuente CI run `42645051155`: **SUCCESS**.
+- **La publicación del preview NO significa que el sitio esté aprobado visualmente, ni constituye una web oficial de la clienta.** Están pendientes QA de scroll, menú, tamaños 375/768/1024/1440, imágenes externas, accesibilidad y las escenas posteriores.
+- Por configuración `main/(root)`, el preview sirve una copia del `dist/` compilado en la raíz. Los cambios en `src/` NO actualizan el preview por sí solos. Cada release futuro debe compilar Astro y sincronizar el build en la raíz o migrar explícitamente GitHub Pages a GitHub Actions antes de eliminar los archivos estáticos.
+- Continúa el `noindex,nofollow,noarchive` en las cinco rutas y las advertencias de contenido demostrativo; evitar enlace comercial como sitio oficial.
