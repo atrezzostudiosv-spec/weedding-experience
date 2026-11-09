@@ -1,29 +1,33 @@
 # THE WEDDING EXPERIENCE — ATREZZO STUDIOS
 
-Propuesta comercial de website, NO web oficial de la clienta. Proyecto en etapa de preparación técnica, sin páginas implementadas todavía.
+**Commercial design concept, NOT the client's official website.** The client has not confirmed business name, services, contact information, or use of private photographs. The current public repository contains source code only; the site has NOT been published as an official website.
 
-## Dirección aprobada
-- Romantic Editorial Cinematic — Black-Tie Edition.
-- Blanco #FFFFFF predominante, negro #111111 y acentos dorados #B59A60.
-- Cinco páginas: Home, About, Services, Gallery, Contact.
-- Cinematografía al scroll usando componentes originales y visualmente aprobados de Atrezzo Core.
-- Inglés; datos comerciales, imágenes y servicios son provisionales hasta confirmar.
+## Phase 04 — working Astro foundation (2026-11-09)
 
-## Dónde empezar
-1. Leer ATREZZO-PROJECT-STATUS.md: aprobaciones, estado y siguiente acción.
-2. Leer docs/TECHNICAL-ARCHITECTURE.md: estructura multipágina Astro SSG y normas técnicas.
-3. Leer docs/COMPONENT-INTEGRATION-MATRIX.md: nombre de cada ZIP, rutas y API/auto-inicialización.
-4. Leer docs/CONTENT-ASSET-REGISTER.md: contenido provisional, video y licencias pendientes.
-5. Leer docs/QA-RELEASE-GATES.md: criterios de pruebas y publicación.
+- Astro 7.4.7 static multipage build: Home, About, Services, Gallery, Contact.
+- Responsive white / black / muted gold editorial theme, noindex on all routes.
+- Shared immersive menu, VEIL document transition and luxury interaction buttons are **exact copies of approved Atrezzo Core source**, not recreated effects.
+- Home features a photographic opening and the **original Scroll Sections 01 Expand**. The video supplied for the Hero remains on hold pending permission/license verification.
+- The other four pages are accessible, purpose-built **structural foundations**: their approved cinematic chapters (Layered Panels, Atlas, Editorial Index, Lightbox) have NOT been integrated yet.
+- Illustrative Unsplash photography is openly recorded in docs/CONTENT-ASSET-REGISTER.md and must never be represented as the client's portfolio.
+- Contact form is visibly disabled: no fake submissions or fabricated contact address.
+- CI builds actual Astro static pages and runs source + output checks.
+- No GitHub Pages deployment is configured, and no visual/device/browser QA has yet been certified.
 
-## Repositorio y continuidad
-Este repositorio es la fuente de verdad del proyecto. Los componentes originales no están copiados aquí durante la fase documental; pertenecen al archivo proporcionado por el usuario: COMPONENTES.zip. Sus diseños ya fueron aprobados y no se deben rediseñar ni volver a solicitar su aprobación. Solo se comprueba la integración en cada página.
+## Documents
+1. [Project status](ATREZZO-PROJECT-STATUS.md) — official approvals and phase history
+2. [Technical architecture](docs/TECHNICAL-ARCHITECTURE.md) — page/build choices
+3. [Component integration matrix](docs/COMPONENT-INTEGRATION-MATRIX.md) — original motors and current integration state
+4. [Content and asset register](docs/CONTENT-ASSET-REGISTER.md) — provisional copy and photography rights
+5. [QA gates](docs/QA-RELEASE-GATES.md) — what must be tested before demo acceptance
 
-La futura salida será HTML estático multipágina con Astro como herramienta de compilación, JavaScript/CSS nativos y sin SPA. Todavía no existen package.json, páginas, build ni deploy.
+## Development
+Requires Node 22.12+.
+- npm install
+- npm run dev
+- npm run build
 
-## Restricciones
-- No publicar como sitio oficial sin autorización.
-- No subir recursos de otros clientes, ni material sin licencia o el ZIP maestro completo.
-- No afirmar eventos ejecutados, experiencia profesional, premios, testimonios o datos de contacto no confirmados.
-- Los formularios no pueden simular envíos.
-- Respetar scroll natural, accesibilidad, reduced-motion y navegación sin JS.
+Site base is configured for the repository subpath /weedding-experience/ (not a deployment approval). Original engines are committed as readable files under public/atrezzo-core/. Do not modify these approved source engines unless fixing a reproducible integration or accessibility issue; apply site-specific palette and content in src/styles/site.css and src/data/site.js.
+
+## Next step
+Run real browser QA for Home/navigation/transition at 375, 768, 1024 and 1440 pixels, including reduced motion, no JavaScript and reverse scroll; fix proven defects. Only then integrate approved cinematic chapters into the remaining four pages. Never publish as an official client website without authorization.
