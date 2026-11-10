@@ -95,3 +95,11 @@ Ejecutar QA de navegador real sobre Home + navegación + transición en 375/768/
 - Arquitectura y paleta previamente aprobadas permanecen vigentes; esta auditoría no cambia código ni lo declara aprobado visualmente.
 - La Wix histórica no se pudo recuperar directamente; no afirmar una auditoría visual completa de esa referencia.
 - Próximo paso: organizar copy de demo original trazable por sección y corregir el wireframe Home en función de la guía, ANTES de extender código de las demás páginas.
+
+
+## Rectificación editorial expresa del director — 2026-11-10
+- La ausencia de materiales propios de la clienta **NO AUTORIZA** una web escasa, vacía, genérica o de mensajes mínimos.
+- La propuesta debe ser una visión comercial y narrativa **completa, ambiciosa, profesional y visualmente demostrativa**, usando contenido original provisional, escenas desarrolladas y servicios conceptuales explicados con sustancia.
+- Referencia normativa: [docs/PROPOSAL-FIRST-EDITORIAL-STANDARD.md](docs/PROPOSAL-FIRST-EDITORIAL-STANDARD.md).
+- Solo se prohíbe presentar propuestas como hechos comprobados, atribuir portfolios/eventos/experiencia ficticios, copiar textos ajenos o inventar datos de contacto. No se prohíbe desarrollar una propuesta original plenamente escrita.
+- Esta decisión complementa la auditoría de referencias y tiene prioridad sobre cualquier interpretación anterior que empobrezca el contenido por falta de material comercial.
