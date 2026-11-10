@@ -103,3 +103,12 @@ Ejecutar QA de navegador real sobre Home + navegación + transición en 375/768/
 - Referencia normativa: [docs/PROPOSAL-FIRST-EDITORIAL-STANDARD.md](docs/PROPOSAL-FIRST-EDITORIAL-STANDARD.md).
 - Solo se prohíbe presentar propuestas como hechos comprobados, atribuir portfolios/eventos/experiencia ficticios, copiar textos ajenos o inventar datos de contacto. No se prohíbe desarrollar una propuesta original plenamente escrita.
 - Esta decisión complementa la auditoría de referencias y tiene prioridad sobre cualquier interpretación anterior que empobrezca el contenido por falta de material comercial.
+
+## Biblioteca editorial Home — 2026-11-10
+- Creado [docs/HOME-EDITORIAL-MASTER.md](docs/HOME-EDITORIAL-MASTER.md) con copy original completo, 7 momentos, microcopy, CTAs, escenas, ritmo y adaptación móvil.
+- Responde a la directriz **Proposal First**: no limitar la profundidad del sitio por ausencia de textos de la clienta. Los cuatro servicios se describen como conceptos de propuesta, no como oferta confirmada.
+- Home se organiza: Hero → Manifesto blanco → Expand → Handoff de cuatro estados fotográficos (NO listado) → Pausa de experiencia → Editorial Inspiration → Cierre de conversión.
+- **Estado del copy: PROPUESTA, aún no aprobado expresamente por la clienta ni implementado en código.**
+- Biblioteca de componentes original previamente aprobada: no modificar comportamiento.
+- La publicación GitHub Pages anterior permanece como prototipo técnico; este commit documental NO cambia `src/pages/index.astro` ni incorpora el Handoff.
+- Próximo paso de producción: revisión de jerarquía visual por escena, selección de recursos licenciados, integración de copy y `Scroll Sections 02 Handoff` con QA responsive/scroll antes de actualizar el preview.
