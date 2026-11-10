@@ -66,3 +66,11 @@ Licencia comprobada en https://unsplash.com/license (permite uso comercial y mod
 Se cargan desde images.unsplash.com; son imágenes ilustrativas externas, no archivos propiedad del cliente ni alojados en GitHub. Revisar carga, privacidad, rendimiento y licencia en QA; sustituirlas por media oficial antes de publicar el website definitivo.
 
 **Video adjunto:** se conserva solo como referencia histórica de la propuesta. No fue incluido en código, commit ni despliegue por permiso de publicación no verificado.
+
+## Hero audiovisual elegido para preview — decisión del 10/11/2026
+- El director de Atrezzo seleccionó expresamente el MP4 adjunto `12279941_1920_1080_25fps(1).mp4` como fondo de Hero, sin textos superpuestos.
+- Fuente aportada: 1920×1080, H.264, 25 fps, 10,56 s, 9.647.846 bytes. Original conservado fuera del repositorio.
+- Preview optimizado: `wedding-hero-preview.mp4`, H.264 1600 px de ancho, 2.011.327 bytes, sin audio.
+- Poster de respaldo: `wedding-hero-poster.jpg`, 85.828 bytes, extraído de la misma fuente.
+- Estado: AUTORIZADO POR EL USUARIO PARA ESTA PROPUESTA VISUAL. Titularidad/licencia de explotación comercial definitiva NO verificada; confirmar antes de publicación oficial.
+- No es fotografía ni video atribuido a un evento realizado por la futura clienta.

@@ -112,3 +112,11 @@ Ejecutar QA de navegador real sobre Home + navegación + transición en 375/768/
 - Biblioteca de componentes original previamente aprobada: no modificar comportamiento.
 - La publicación GitHub Pages anterior permanece como prototipo técnico; este commit documental NO cambia `src/pages/index.astro` ni incorpora el Handoff.
 - Próximo paso de producción: revisión de jerarquía visual por escena, selección de recursos licenciados, integración de copy y `Scroll Sections 02 Handoff` con QA responsive/scroll antes de actualizar el preview.
+
+## Corrección aprobada de Hero — 2026-11-10
+- El Hero de Home debe ser únicamente video a pantalla completa con Navigation 01 intacta: SIN TITULAR, subtítulos, CTA ni etiqueta adicional.
+- Video aportado y escogido: `12279941_1920_1080_25fps(1).mp4` (10,56 s), con versión optimizada H.264 1600 px y poster de respaldo.
+- El primer H1 y contenido narrativo pasan a la sección editorial sobre blanco inmediatamente posterior al Hero.
+- Fuente Astro `src/pages/index.astro` actualizada; motores de Navigation/Transitions/Buttons/Scroll Sections originales NO alterados.
+- La decisión es superior a maquetas previas y a Home Editorial Master anterior; el master se actualizó para reflejarla.
+- La integración como propuesta es conforme al uso expresamente elegido por el usuario. Pendiente verificar licencias para web comercial oficial.

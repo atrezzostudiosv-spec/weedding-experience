@@ -16,18 +16,12 @@ EMOCIÓN → PUNTO DE VISTA → ATMÓSFERA → POSIBILIDADES CONCRETAS → CÓMO
 
 La estructura son **7 momentos editoriales**, de los cuales Services funciona como **un único capítulo cinematográfico con 4 estados**, NO como 4 cajas o 4 filas. Mantener scroll nativo y lectura posible sin JS.
 
-## 01 — HERO / THE OPENING
-**Papel:** atraer con fotografía de gran formato y definir el universo de celebración.
-**Componente:** Hero editorial existente, Navigation 01 inmersiva, Buttons 01 / CTA anchor.
-**Fotografía:** ceremonia o pareja en entorno elegante; composición respirada para el H1, recorte vertical móvil específico. Video candidato solo con permiso verificable.
-**Movimiento:** revelado de H1 en dos tiempos después de mostrar el plano; no retrasar el contenido para lectores lentos o reduced-motion. Sin secuestro de scroll.
-**Copy de pantalla exacto:**
-- Eyebrow: `THE ART OF CELEBRATION`
-- H1: `Some moments\nstay forever.`
-- Supporting: `The first look. The familiar faces. The feeling of being exactly where you belong. A celebration should hold more than beauty — it should hold meaning.`
-- CTA: `Explore the Experience` → ancla #our-perspective, sin transición documental.
-
-**Móvil:** H1 en 2–3 líneas, texto visible en el primer viewport si cabe; CTA tocable. El recorte nunca debe cortar visualmente a las personas.
+## 01 — HERO / THE OPENING — DIRECCIÓN APROBADA EL 10 DE NOVIEMBRE
+**Decisión del director:** HERO DE VIDEO SIN NINGÚN TEXTO. No debe haber titular, párrafo, botón, numeración, eyebrow, scroll prompt ni side-note dentro del Hero. Navigation 01 se mantiene tal como estaba.
+**Video elegido:** 12279941_1920_1080_25fps(1).mp4, aportado por el usuario. Ceremonia blanca con mar al fondo.
+**Implementación de preview:** MP4 H.264 optimizado a 1600 px, muted, playsinline, autoplay loop, con poster local derivado del mismo video. Full viewport y object-fit cover; recorte móvil centrado.
+**Accesibilidad:** texto comercial comienza después del Hero. El H1 queda en la primera sección editorial blanca. Si se reduce movimiento, se usa poster fijo.
+**Origen:** video aportado y expresamente seleccionado para la propuesta; confirmar derechos de distribución comercial definitiva antes de lanzar el website oficial.
 
 ## 02 — THE POINT OF VIEW / MANIFESTO
 **Papel:** responder qué distingue la visión conceptual: intención, diseño, logística y emoción unidas.
@@ -36,7 +30,7 @@ La estructura son **7 momentos editoriales**, de los cuales Services funciona co
 **Movimiento:** una entrada suave y breve al llegar al bloque, después lectura estable.
 **Copy:**
 - Eyebrow: `BEYOND THE CELEBRATION`
-- H2: `It's never just\nabout the day.`
+- H1: `It's never just\nabout the day.`
 - Paragraph 1: `It's the anticipation before a room fills. The way a familiar song changes the atmosphere. The conversations that continue long after the last dance. The most memorable celebrations are shaped not only to look beautiful, but to feel personal from beginning to end.`
 - Paragraph 2: `Here, planning and design belong in the same conversation. A story becomes a setting through light, texture, flowers, timing, and the way people move through a space. When those details speak the same language, the experience feels natural, connected, and unmistakably yours.`
 - CTA: `Discover Our Perspective` → /about/.
@@ -151,3 +145,6 @@ La estructura son **7 momentos editoriales**, de los cuales Services funciona co
 
 ## Criterio de cierre de fase editorial
 El diseño Home solo pasará a implementación cuando todo el copy esté asociado a escena + componente + comportamiento + CTA y registro de medios. Este archivo satisface los primeros cuatro; las imágenes finales deberán seleccionarse con derechos verificables antes del cambio de código.
+
+
+**PRECEDENCIA:** La aprobación de Hero exclusivamente audiovisual sustituye cualquier copy anterior previsto sobre el video. Prohibido volver a superponer el titular "Some moments stay forever." en ese lugar.

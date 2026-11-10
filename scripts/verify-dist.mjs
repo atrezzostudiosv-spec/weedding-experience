@@ -2,7 +2,7 @@ import { existsSync,readFileSync } from 'node:fs';
 import {join} from 'node:path';
 const root='dist';
 const paths=['index.html','about/index.html','services/index.html','gallery/index.html','contact/index.html',
-  'atrezzo-core/nav/atrezzo-navigation-01.css','atrezzo-core/nav/atrezzo-navigation-01.js',
+  'assets/video/wedding-hero-preview.mp4','assets/video/wedding-hero-poster.jpg','atrezzo-core/nav/atrezzo-navigation-01.css','atrezzo-core/nav/atrezzo-navigation-01.js',
   'atrezzo-core/veil/atrezzo-transitions.css','atrezzo-core/veil/atrezzo-transitions.js',
   'atrezzo-core/veil/atrezzo-preflight.js','atrezzo-core/buttons/atrezzobuttons-01.css',
   'atrezzo-core/buttons/atrezzobuttons-01.js',
@@ -21,3 +21,6 @@ for(const path of paths.filter(p=>p.endsWith('.html'))){
 const home=readFileSync(join(root,'index.html'),'utf8');
 if(!home.includes('data-ats-effect="expand"'))throw new Error('Home missing approved Expand');
 console.log('PASS: five static routes, base-aware links, Atrezzo core assets, noindex, scene markup');
+
+if(!home.includes("<video")||!home.includes("wedding-hero-preview.mp4")) throw new Error("Hero video missing");
+if(home.includes("hero__content")||home.includes("hero__top")) throw new Error("Unexpected text overlay in Hero");
