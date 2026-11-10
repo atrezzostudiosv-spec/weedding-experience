@@ -85,3 +85,13 @@ Ejecutar QA de navegador real sobre Home + navegación + transición en 375/768/
 - **La publicación del preview NO significa que el sitio esté aprobado visualmente, ni constituye una web oficial de la clienta.** Están pendientes QA de scroll, menú, tamaños 375/768/1024/1440, imágenes externas, accesibilidad y las escenas posteriores.
 - Por configuración `main/(root)`, el preview sirve una copia del `dist/` compilado en la raíz. Los cambios en `src/` NO actualizan el preview por sí solos. Cada release futuro debe compilar Astro y sincronizar el build en la raíz o migrar explícitamente GitHub Pages a GitHub Actions antes de eliminar los archivos estáticos.
 - Continúa el `noindex,nofollow,noarchive` en las cinco rutas y las advertencias de contenido demostrativo; evitar enlace comercial como sitio oficial.
+
+## Auditoría integral de referentes de la clienta — 2026-11-10
+- Nueva fuente maestra: [docs/CLIENT-REFERENCES-REVERSE-ENGINEERING.md](docs/CLIENT-REFERENCES-REVERSE-ENGINEERING.md).
+- Se analizaron dos HTML guardados (Nirali Shah Events y Diwan by Design) y tres videos móviles de referencias (Nirali, Diwan, Premini).
+- Corrección crítica: la futura clienta NO ha confirmado marca, especialización, servicios, textos, fotos ni portfolio. Está pidiendo una demo visual para reconocer su dirección; los referentes NO son hechos comerciales del nuevo negocio.
+- Todos los textos deben ser originales de demostración y sustituibles; ninguna biografía, prensa, premios, bodas, partners, promesas o fotos de las marcas de referencia se puede presentar como obra de la clienta.
+- Prohibición vigente del director Atrezzo: servicios en filas numeradas/título/descrición/divisores y variantes genéricas equivalentes. La presentación de servicios de la base técnica actual requiere corrección en la próxima fase visual; usar Service Showcase y relato fotográfico.
+- Arquitectura y paleta previamente aprobadas permanecen vigentes; esta auditoría no cambia código ni lo declara aprobado visualmente.
+- La Wix histórica no se pudo recuperar directamente; no afirmar una auditoría visual completa de esa referencia.
+- Próximo paso: organizar copy de demo original trazable por sección y corregir el wireframe Home en función de la guía, ANTES de extender código de las demás páginas.
