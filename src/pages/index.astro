@@ -5,21 +5,18 @@ import {images} from "../data/site.js";
 const base = import.meta.env.BASE_URL;
 ---
 <SiteLayout title="Every Celebration Begins With A Feeling" description="An editorial concept for wedding planning and event design by Atrezzo Studios." page="home" homeScroll={true}>
-  <section class="hero" aria-labelledby="home-title">
-    <div class="hero__media" aria-hidden="true"><img src={images.hero} alt="" fetchpriority="high" decoding="async" /></div>
-    <div class="hero__shade"></div>
-    <div class="hero__top"><span>THE ART OF CELEBRATION</span><span>01 / 05</span></div>
-    <div class="hero__content">
-      <span class="hero__eyebrow">A considered approach to life’s meaningful moments</span>
-      <h1 id="home-title">Some moments<br/><em>stay forever.</em></h1>
-      <div class="hero__foot"><p>Beautifully imagined. Thoughtfully celebrated.</p><a class="hero__scroll" href="#our-perspective">Discover the experience <span aria-hidden="true">↓</span></a></div>
+  <section class="hero hero--video" aria-label="Wedding ceremony film">
+    <div class="hero__media" aria-hidden="true">
+      <img class="hero__poster" src={base + "assets/video/wedding-hero-poster.jpg"} alt="" fetchpriority="high" decoding="async" />
+      <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster={base + "assets/video/wedding-hero-poster.jpg"} aria-hidden="true" tabindex="-1">
+        <source src={base + "assets/video/wedding-hero-preview.mp4"} type="video/mp4" />
+      </video>
     </div>
-    <span class="hero__side-note" aria-hidden="true">ATREZZO STUDIOS — EDITORIAL CONCEPT</span>
   </section>
   <section class="home-intro" id="our-perspective" aria-labelledby="intro-title">
     <span class="section-label"><span class="gold-line"></span> THE POINT OF VIEW / 01</span>
-    <h2 id="intro-title">An occasion becomes <em>unforgettable</em> when every detail feels like it belongs.</h2>
-    <div class="home-intro__foot"><p>Created as an editorial exploration of weddings, private gatherings and meaningful celebrations. Every image in this concept is illustrative, not a client event portfolio.</p><PrimaryAction href={base + "about/"} label="Our perspective" subtle /></div>
+    <h1 id="intro-title">It’s never just<br/><em>about the day.</em></h1>
+    <div class="home-intro__foot"><p>It’s the anticipation before a room fills. The familiar faces. The conversations that continue long after the final dance. Beautiful celebrations begin with the people and feelings at their heart.</p><PrimaryAction href={base + "about/"} label="Our perspective" subtle /></div>
   </section>
   <div class="ats-scope wedding-scroll" id="wedding-expand">
     <section class="ats-scene ats-scene--expand" data-ats-effect="expand" aria-labelledby="wedding-expand-title">
