@@ -1,16 +1,18 @@
-name: Validate Atrezzo Website
+name: Validate and Publish Atrezzo Website
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 permissions:
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -18,9 +20,23 @@ jobs:
       - run: npm run check:source
       - run: npm run build
 
-      - name: Retain static build for inspection (not a deployment)
+      - name: Retain static build for inspection
         uses: actions/upload-artifact@v4
         with:
-          name: wedding-phase04-static-build
+          name: wedding-static-build
           path: dist/
           retention-days: 7
+
+      # Pages is configured to serve main/(root), not the Astro source or dist/.
+      # Sync compiled files to root without touching src/, docs/ or .github/.
+      - name: Synchronize live preview from built Astro output
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          cp -R dist/. .
+          git add -A index.html about contact services gallery _astro assets atrezzo-core
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "build(preview): synchronize compiled Wedding website"
+            git push origin HEAD:main
+          fi

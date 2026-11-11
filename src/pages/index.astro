@@ -1,10 +1,44 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import PrimaryAction from "../components/PrimaryAction.astro";
-import {images} from "../data/site.js";
+import { images } from "../data/site.js";
+import "../styles/home-cinematic.css";
+
 const base = import.meta.env.BASE_URL;
+const moments = [
+  {
+    eyebrow: "01 / WEDDINGS",
+    title: "Weddings, unmistakably yours.",
+    copy: "Imagine a day where ceremony, atmosphere, tradition, and personal details become one cohesive story. From the first arrival to the final dance, make space for the moments that matter most.",
+    image: images.expand,
+    alt: "Illustrative floral wedding ceremony with thoughtfully arranged seating."
+  },
+  {
+    eyebrow: "02 / PRIVATE GATHERINGS",
+    title: "Gather beautifully.",
+    copy: "An intimate dinner, a milestone worth honoring, or a gathering of favorite people. A setting becomes part of the welcome — considered, warm, and made for being together.",
+    image: images.reception,
+    alt: "Illustrative reception setting prepared for a celebration."
+  },
+  {
+    eyebrow: "03 / EVENT DESIGN",
+    title: "Atmosphere is everything.",
+    copy: "Textures, florals, lighting, and composition speak before a single word is said. Each detail becomes part of a visual story that feels deeply personal.",
+    image: images.details,
+    alt: "Illustrative close-up of wedding design details."
+  },
+  {
+    eyebrow: "04 / CELEBRATION FLOW",
+    title: "Be present for the moment.",
+    copy: "Arrivals, transitions, and the rhythm of the day deserve the same care as the setting. So the experience feels effortless, and people remain at its heart.",
+    image: images.hall,
+    alt: "Illustrative setting for an elegant gathering."
+  }
+];
 ---
-<SiteLayout title="Every Celebration Begins With A Feeling" description="An editorial concept for wedding planning and event design by Atrezzo Studios." page="home" homeScroll={true}>
+
+<SiteLayout title="Every Celebration Begins With A Feeling" description="An original romantic editorial wedding and celebration design concept by Atrezzo Studios." page="home" homeScroll={true}>
+  <!-- Approved: video-only hero. Do not overlay copy, CTA, or scene labels. -->
   <section class="hero hero--video" aria-label="Wedding ceremony film">
     <div class="hero__media" aria-hidden="true">
       <img class="hero__poster" src={base + "assets/video/wedding-hero-poster.jpg"} alt="" fetchpriority="high" decoding="async" />
@@ -13,26 +47,132 @@ const base = import.meta.env.BASE_URL;
       </video>
     </div>
   </section>
+
   <section class="home-intro" id="our-perspective" aria-labelledby="intro-title">
-    <span class="section-label"><span class="gold-line"></span> THE POINT OF VIEW / 01</span>
-    <h1 id="intro-title">It’s never just<br/><em>about the day.</em></h1>
-    <div class="home-intro__foot"><p>It’s the anticipation before a room fills. The familiar faces. The conversations that continue long after the final dance. Beautiful celebrations begin with the people and feelings at their heart.</p><PrimaryAction href={base + "about/"} label="Our perspective" subtle /></div>
+    <span class="section-label"><span class="gold-line"></span> BEYOND THE CELEBRATION</span>
+    <h1 id="intro-title">It's never just<br/><em>about the day.</em></h1>
+    <div class="home-intro__foot">
+      <div class="home-intro__narrative">
+        <p>It's the anticipation before a room fills. The way a familiar song changes the atmosphere. The conversations that continue long after the last dance. The most memorable celebrations are shaped not only to look beautiful, but to feel personal from beginning to end.</p>
+        <p>Here, planning and design belong in the same conversation. Light, texture, flowers, and timing come together to create a feeling unmistakably your own.</p>
+      </div>
+      <PrimaryAction href={base + "about/"} label="Discover our perspective" subtle />
+    </div>
   </section>
+
+  <!-- Approved Atrezzo Scroll Sections 01 engine retained byte-for-byte. -->
   <div class="ats-scope wedding-scroll" id="wedding-expand">
     <section class="ats-scene ats-scene--expand" data-ats-effect="expand" aria-labelledby="wedding-expand-title">
       <div class="ats-stage">
-        <div class="ats-center-photo ats-photo"><img src={images.expand} alt="Floral ceremony arch surrounded by white chairs; illustrative reference photography." loading="lazy" decoding="async" /></div>
-        <div class="ats-scene__bar"><strong>THE EXPERIENCE / 02</strong><span>SCULPTED BY THE MOMENT</span></div>
-        <div class="ats-title-overlay"><h2 id="wedding-expand-title">For the moments<br/><em>that matter.</em></h2><p>A celebration begins with a feeling — and grows through a thousand thoughtful details.</p></div>
+        <div class="ats-center-photo ats-photo">
+          <img src={images.expand} alt="Illustrative floral ceremony setting, arranged for a wedding." loading="lazy" decoding="async" />
+        </div>
+        <div class="ats-scene__bar"><strong>THE ART OF ATMOSPHERE / 02</strong><span>SCULPTED BY THE MOMENT</span></div>
+        <div class="ats-title-overlay">
+          <h2 id="wedding-expand-title">Every detail<br/><em>tells a story.</em></h2>
+          <p>Light leads the eye. Flowers soften the room. The smallest gestures create a feeling that stays.</p>
+        </div>
       </div>
     </section>
   </div>
-  <section class="home-closing" aria-labelledby="closing-title">
-    <div class="home-closing__index"><span class="section-label">A PERSONAL INVITATION / 03</span><span class="gold-star" aria-hidden="true">✳</span></div>
-    <div class="home-closing__body">
-      <h2 id="closing-title">Your story deserves<br/>a beautiful setting.</h2>
-      <p>Explore the vision behind this concept, or begin a conversation about an occasion worth remembering.</p>
-      <PrimaryAction href={base + "services/"} label="Explore the services" />
+
+  <!-- A fluid editorial collage: independent images, not a product-card grid. -->
+  <section class="romance-collage" aria-labelledby="romance-collage-title">
+    <div class="romance-collage__opening">
+      <span class="section-label"><span class="gold-line"></span> MOMENTS, FELT DEEPLY</span>
+      <h2 id="romance-collage-title">The beauty lives<br/><em>between the moments.</em></h2>
+    </div>
+    <div class="romance-collage__scroll" data-romance-collage>
+      <div class="romance-collage__stage">
+        <figure class="romance-collage__photo romance-collage__photo--a" data-drift-x="-15" data-drift-y="-22">
+          <img src={images.details} alt="Illustrative close-up of refined celebration details." loading="lazy" decoding="async" />
+          <figcaption>THE DETAILS</figcaption>
+        </figure>
+        <figure class="romance-collage__photo romance-collage__photo--b" data-drift-x="18" data-drift-y="-12">
+          <img src={images.hall} alt="Illustrative celebration setting with an intimate atmosphere." loading="lazy" decoding="async" />
+          <figcaption>THE ANTICIPATION</figcaption>
+        </figure>
+        <figure class="romance-collage__photo romance-collage__photo--c" data-drift-x="-9" data-drift-y="19">
+          <img src={images.reception} alt="Illustrative reception scene with celebratory table styling." loading="lazy" decoding="async" />
+          <figcaption>THE GATHERING</figcaption>
+        </figure>
+        <p class="romance-collage__whisper" aria-hidden="true">Love is in<br/><em>the little things.</em></p>
+      </div>
     </div>
   </section>
+
+  <section class="romance-possibilities" aria-labelledby="possibilities-title">
+    <header class="romance-possibilities__intro">
+      <span class="section-label"><span class="gold-line"></span> THE POSSIBILITIES</span>
+      <h2 id="possibilities-title">Every celebration<br/><em>has its own language.</em></h2>
+      <p>Some are intimate. Some are grand. Some honor tradition; others welcome the unexpected. Every story deserves its own atmosphere.</p>
+    </header>
+    <div class="romance-possibilities__scroll" data-romance-story>
+      <div class="romance-possibilities__stage">
+        {moments.map((moment, i) => (
+          <article class="romance-possibilities__moment" data-romance-moment data-index={i}>
+            <img src={moment.image} alt={moment.alt} loading="lazy" decoding="async" />
+            <div class="romance-possibilities__shade" aria-hidden="true"></div>
+            <div class="romance-possibilities__content">
+              <span class="section-label">{moment.eyebrow}</span>
+              <h3>{moment.title}</h3>
+              <p>{moment.copy}</p>
+            </div>
+          </article>
+        ))}
+        <div class="romance-possibilities__counter" aria-hidden="true"><span data-romance-count>01</span> / 04</div>
+      </div>
+    </div>
+    <div class="romance-possibilities__next">
+      <p>Thoughtful celebrations begin with a vision.</p>
+      <PrimaryAction href={base + "services/"} label="Explore the possibilities" subtle />
+    </div>
+  </section>
+
+  <section class="romance-breath" aria-labelledby="romance-breath-title">
+    <div class="romance-breath__image" data-romance-reveal>
+      <img src={images.details} alt="Illustrative wedding detail photographed in natural light." loading="lazy" decoding="async" />
+      <span>THE ART OF FEELING</span>
+    </div>
+    <div class="romance-breath__copy" data-romance-reveal>
+      <span class="section-label"><span class="gold-line"></span> THE HUMAN TOUCH</span>
+      <h2 id="romance-breath-title">The magic is in<br/><em>how it all comes together.</em></h2>
+      <p>A meaningful celebration begins by understanding what matters to the people at its center. A clear point of view gives the design direction; a considered plan gives it rhythm. Together, they make room for the people, not the production, to become the most memorable part of the day.</p>
+      <PrimaryAction href={base + "about/"} label="Explore our perspective" subtle />
+    </div>
+  </section>
+
+  <section class="romance-editorial" aria-labelledby="romance-editorial-title">
+    <div class="romance-editorial__heading" data-romance-reveal>
+      <span class="section-label"><span class="gold-line"></span> EDITORIAL INSPIRATION</span>
+      <h2 id="romance-editorial-title">The moments<br/><em>between the moments.</em></h2>
+      <p>Flowers catching the afternoon light. A table waiting for its first conversation. The hush before the celebration begins. Inspiration lives in those quiet details.</p>
+    </div>
+    <div class="romance-editorial__composition">
+      <figure class="romance-editorial__image romance-editorial__image--large" data-romance-reveal>
+        <img src={images.reception} alt="Illustrative romantic reception setting." loading="lazy" decoding="async" />
+        <figcaption>THE SETTING</figcaption>
+      </figure>
+      <figure class="romance-editorial__image romance-editorial__image--small" data-romance-reveal>
+        <img src={images.details} alt="Illustrative close-up of thoughtfully selected details." loading="lazy" decoding="async" />
+        <figcaption>THE DETAILS</figcaption>
+      </figure>
+      <figure class="romance-editorial__image romance-editorial__image--portrait" data-romance-reveal>
+        <img src={images.hall} alt="Illustrative atmosphere of an elegant gathering." loading="lazy" decoding="async" />
+        <figcaption>THE FEELING</figcaption>
+      </figure>
+    </div>
+    <div class="romance-editorial__action"><PrimaryAction href={base + "gallery/"} label="Explore the inspiration" subtle /></div>
+  </section>
+
+  <section class="home-closing" aria-labelledby="closing-title">
+    <div class="home-closing__index"><span class="section-label">YOUR STORY STARTS HERE</span><span class="gold-star" aria-hidden="true">✳</span></div>
+    <div class="home-closing__body" data-romance-reveal>
+      <h2 id="closing-title">Something beautiful begins<br/><em>with a conversation.</em></h2>
+      <p>Tell us what you're celebrating, what matters most to you, and the atmosphere you imagine. Every memorable experience begins by understanding the people behind it.</p>
+      <PrimaryAction href={base + "contact/"} label="Begin your inquiry" />
+    </div>
+  </section>
+
+  <script>import "../scripts/home-cinematic.js";</script>
 </SiteLayout>
