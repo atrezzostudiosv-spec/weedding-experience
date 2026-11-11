@@ -20,6 +20,7 @@ const current = navigation.find((n) => n.id === page) ?? navigation[0];
     <link rel="stylesheet" href={asset("atrezzo-core/veil/atrezzo-transitions.css")} />
     <link rel="stylesheet" href={asset("atrezzo-core/buttons/atrezzobuttons-01.css")} />
     {homeScroll && <link rel="stylesheet" href={asset("atrezzo-core/scroll01/atrezzo-scroll-sections.css")} />}
+    {homeScroll && <link rel="stylesheet" href={asset("atrezzo-core/motion-v1/atrezzo-motion.css")} />}
     <script is:inline src={asset("atrezzo-core/veil/atrezzo-preflight.js")}></script>
   </head>
   <body class={"azn1 page-" + page}>
@@ -71,6 +72,7 @@ const current = navigation.find((n) => n.id === page) ?? navigation[0];
     <script is:inline src={asset("atrezzo-core/nav/atrezzo-navigation-01.js")}></script>
     <script is:inline src={asset("atrezzo-core/buttons/atrezzobuttons-01.js")}></script>
     {homeScroll && <script is:inline src={asset("atrezzo-core/scroll01/atrezzo-scroll-sections.js")}></script>}
+    {homeScroll && <script is:inline type="module" src={asset("atrezzo-core/motion-v1/wedding-init.js")}></script>}
     {homeScroll && <script is:inline>
       if (window.AtrezzoScrollSections) {
         window.weddingScroll = window.AtrezzoScrollSections.init(document.getElementById("wedding-expand"));
