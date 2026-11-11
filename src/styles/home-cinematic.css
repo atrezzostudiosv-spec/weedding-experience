@@ -111,9 +111,11 @@
 .romance-editorial__image[data-am-destination] figcaption{left:20px;bottom:18px;color:#fff;text-shadow:0 1px 15px #0009;z-index:2}
 .romance-breath__image[data-am-parallax]>span{right:20px;bottom:18px;color:#fff;text-shadow:0 1px 15px #0009}
 @media(max-width:1100px){
-  .romance-possibilities__moment[data-am-stack-card]{top:0;height:100svh}
+  .romance-possibilities__moment[data-am-stack-card]{position:relative;top:auto;height:auto;min-height:82svh;transform:none!important}
   .romance-collage__scroll .am-hero__media{box-shadow:0 8px 30px rgba(18,16,12,.12)}
 }
 @media(prefers-reduced-motion:reduce){
   .romance-collage__scroll .am-hero__media--center{--am-scale:1}
 }
+
+@media(max-width:1100px){.romance-possibilities__moment[data-am-stack-card]::after{opacity:0!important}}
