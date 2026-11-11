@@ -1,10 +1,10 @@
 /**
- * ATREZZO Motion Library v1.0.0
+ * ATREZZO Motion Library v1.0.1
  * Original implementation of documented motion patterns; not Spain Collection theme code.
  * Dependency-free ES module. Progressive enhancement, reduced-motion support, clean lifecycle.
  * Copyright (c) 2026 ATREZZO. Client assets are not part of the reusable runtime.
  */
-const VERSION = '1.0.0';
+const VERSION = '1.0.1';
 const DESKTOP = '(min-width: 1101px)';
 const REDUCED = '(prefers-reduced-motion: reduce)';
 const clamp = (n, a=0, b=1) => Math.max(a, Math.min(b, n));
@@ -112,7 +112,7 @@ class AtrezzoMotion {
       if(media.length!==6){console.warn('[ATREZZO Motion] Home hero requires 6 media items');continue;}
       media.forEach((el,i)=>el.style.setProperty('--am-index',i));ready(hero);
       this.onScroll(()=>{
-        const t=pOf(hero);const w=innerWidth,h=innerHeight;
+        const rect=hero.getBoundingClientRect();const t=clamp(-rect.top/Math.max(1,rect.height-innerHeight));const w=innerWidth,h=innerHeight;
         media.forEach((el,i)=>{
           const f=motionMath.heroFrame(i,t,w,h,this.isDesktop);
           el.style.setProperty('--am-x',`${f.x.toFixed(1)}px`);
