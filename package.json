@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build && node scripts/verify-dist.mjs",
     "preview": "astro preview",
-    "check:source": "node scripts/check-source.mjs"
+    "check:source": "node scripts/check-source.mjs && node scripts/check-home-master.mjs"
   },
   "dependencies": {
     "astro": "7.4.7"
