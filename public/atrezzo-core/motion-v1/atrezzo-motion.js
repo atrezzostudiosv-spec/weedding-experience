@@ -1,10 +1,10 @@
 /**
- * ATREZZO Motion Library v1.0.1
+ * ATREZZO Motion Library v1.1.0
  * Original implementation of documented motion patterns; not Spain Collection theme code.
  * Dependency-free ES module. Progressive enhancement, reduced-motion support, clean lifecycle.
  * Copyright (c) 2026 ATREZZO. Client assets are not part of the reusable runtime.
  */
-const VERSION = '1.0.1';
+const VERSION = '1.1.0';
 const DESKTOP = '(min-width: 1101px)';
 const REDUCED = '(prefers-reduced-motion: reduce)';
 const clamp = (n, a=0, b=1) => Math.max(a, Math.min(b, n));
@@ -56,7 +56,7 @@ class AtrezzoMotion {
   lock(){this.lockCount++;if(this.lockCount===1)document.documentElement.classList.add('am-scroll-locked');}
   unlock(){this.lockCount=Math.max(0,this.lockCount-1);if(!this.lockCount)document.documentElement.classList.remove('am-scroll-locked');}
   init(){
-    this.text();this.buttons();this.parallax();this.scrollVideo();this.homeHero();this.stack();
+    this.text();this.buttons();this.heroExit();this.quoteImage();this.parallax();this.scrollVideo();this.homeHero();this.stack();
     this.destinations();this.ambassadors();this.footer();this.weddingsHero();this.weddingJourney();
     this.burned();this.mobileNav();this.videoModals();this.pageTransitions();
     this.listen(window,'scroll',this.schedule,{passive:true});
@@ -100,7 +100,7 @@ class AtrezzoMotion {
   }
   scrollVideo(){
     const videos=dom(this.root,'video[data-am-autoplay]');if(!videos.length)return;
-    videos.forEach(v=>{v.muted=true;v.playsInline=true;});
+    videos.forEach(v=>{v.muted=true;v.playsInline=true;v.autoplay=!this.reduced;if(this.reduced)v.pause();});
     if(!('IntersectionObserver' in window)){videos.forEach(safePlay);return;}
     const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){if(!this.reduced)safePlay(e.target);}else e.target.pause();}),{rootMargin:this.isDesktop?'5% 0px 5% 0px':'50% 0px 50% 0px'});
     videos.forEach(v=>obs.observe(v));this.observers.push(obs);
@@ -126,16 +126,40 @@ class AtrezzoMotion {
       this.cleanups.push(()=>media.forEach(el=>['--am-x','--am-y','--am-scale','--am-inner-scale','--am-index'].forEach(p=>el.style.removeProperty(p))));
     }
   }
+  // Measure untransformed slots: measuring the transformed panel causes feedback
+  // and direction-dependent drift. Every frame is a pure function of scroll.
   stack(){
     for(const el of dom(this.root,'[data-am-stack]')){
       const cards=dom(el,'[data-am-stack-card]');ready(el);
       this.onScroll(()=>{cards.forEach((card,i)=>{
-        const r=card.getBoundingClientRect();const entry=clamp((innerHeight-r.top)/Math.max(1,innerHeight*.5));
-        const next=cards[i+1];const exit=next?clamp((innerHeight*1.15-next.getBoundingClientRect().top)/Math.max(1,innerHeight*.95)):0;
+        const slot=card.closest('[data-am-stack-slot]') || card;
+        const r=slot.getBoundingClientRect();
+        const entry=clamp((innerHeight-r.top)/(innerHeight*.5));
+        const next=cards[i+1]?.closest('[data-am-stack-slot]') || cards[i+1];
+        const exit=next?clamp((innerHeight-next.getBoundingClientRect().top)/innerHeight):0;
         card.style.setProperty('--am-card-scale',this.isDesktop?mix(.95,1,entry).toFixed(4):'1');
-        card.style.setProperty('--am-card-y',`${this.isDesktop?0:Math.round(-.25*innerHeight*exit)}px`);
-        card.style.setProperty('--am-card-dim',`${Math.min(.66,exit*.66).toFixed(3)}`);
+        card.style.setProperty('--am-card-y',`${(-innerHeight*(this.isDesktop?.12:.25)*exit).toFixed(2)}px`);
+        card.style.setProperty('--am-card-dim',(exit*.4).toFixed(4));
       });});
+      this.cleanups.push(()=>{el.removeAttribute('data-am-ready');cards.forEach(card=>['--am-card-scale','--am-card-y','--am-card-dim'].forEach(p=>card.style.removeProperty(p)));});
+    }
+  }
+  heroExit(){
+    for(const el of dom(this.root,'[data-am-hero-exit]')){
+      this.onScroll(()=>{const r=el.getBoundingClientRect();const p=clamp(-r.top/Math.max(1,r.height));
+        el.style.setProperty('--am-hero-exit-y',`${(p*r.height*(this.isDesktop?.18:.06)).toFixed(2)}px`);
+      });
+      this.cleanups.push(()=>el.style.removeProperty('--am-hero-exit-y'));
+    }
+  }
+  quoteImage(){
+    for(const el of dom(this.root,'[data-am-quote-image]')){
+      const host=el.parentElement;
+      this.onScroll(()=>{const r=host.getBoundingClientRect();const p=clamp((innerHeight-r.top)/(innerHeight+r.height));
+        const distance=Math.max(0,host.clientHeight-el.clientHeight-260);
+        el.style.setProperty('--am-quote-y',`${(this.isDesktop?distance*p*.65:0).toFixed(2)}px`);
+      });
+      this.cleanups.push(()=>el.style.removeProperty('--am-quote-y'));
     }
   }
   destinations(){for(const el of dom(this.root,'[data-am-destination]'))ready(el);this.onVisible('[data-am-destination]',el=>el.classList.add('am-inview'),'0px 0px 2.5% 0px');}
@@ -211,7 +235,14 @@ class AtrezzoMotion {
     });
     this.cleanups.push(()=>layer.remove());
   }
-  refresh(){if(this.destroyed)return;this.schedule();}
+  refresh(){
+    if(this.destroyed)return;
+    for(const v of dom(this.root,'video[data-am-autoplay]')){
+      const r=v.getBoundingClientRect();
+      if(this.reduced)v.pause();else if(r.bottom>0&&r.top<innerHeight)safePlay(v);
+    }
+    this.schedule();
+  }
   destroy(){if(this.destroyed)return;this.destroyed=true;cancelAnimationFrame(this.raf);this.observers.forEach(o=>o.disconnect());
     this.cleanups.slice().reverse().forEach(fn=>{try{fn();}catch(e){console.error(e);}});this.cleanups.length=0;
     this.scrollTasks.length=0;this.lockCount=0;document.documentElement.classList.remove('am-scroll-locked');

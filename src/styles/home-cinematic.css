@@ -1,121 +1,160 @@
-/* The Wedding Experience — romantic editorial Home, site-scoped only.
-   Does not alter approved Atrezzo Navigation 01 / VEIL / Buttons / Expand. */
-:root{--romance-paper:#fff;--romance-ink:#111;--romance-gold:#b59a60;--romance-soft:#f3f0eb}
-.page-home .home-intro__narrative{max-width:585px}
-.page-home .home-intro__narrative p{margin:0 0 20px;color:#68645e;line-height:1.8;font-size:clamp(15px,1.15vw,18px)}
-.page-home .home-intro__narrative p:last-child{margin-bottom:0}
-.page-home .home-intro__foot{align-items:start}
-.page-home .home-intro__foot>.ab-underline{flex-shrink:0}
-.romance-collage,.romance-possibilities,.romance-breath,.romance-editorial{isolation:isolate}
-/* Actual ATREZZO Motion v1 HomeHeroCollage: six media with pinned dispersal. */
-.romance-collage{padding:0;background:#f7f5f1;isolation:isolate}
-.romance-collage__scroll .am-hero__sticky{background:#f7f5f1}
-.romance-collage__scroll .am-hero__media{margin:0;box-shadow:0 16px 55px rgba(18,16,12,.11)}
-.romance-collage__scroll .am-hero__media--center{box-shadow:0 22px 65px rgba(18,16,12,.19)}
-.romance-collage__scroll .am-hero__progress{height:1px;background:#b59a60;opacity:.45}
-.romance-collage__scroll:not([data-am-ready]) .am-hero__media--center{--am-scale:1}
-.romance-possibilities{background:#fff}
-.romance-possibilities__intro{padding:clamp(105px,13vw,190px) var(--w-gutter) clamp(65px,8vw,115px)}
-.romance-possibilities__intro p{max-width:600px;font-size:clamp(16px,1.25vw,20px);line-height:1.8;color:#68645e;margin:35px 0 0}
-.romance-possibilities__scroll{position:relative}
-.romance-possibilities__stage{position:relative}
-.romance-possibilities__moment{position:relative;min-height:min(96svh,940px);overflow:hidden;background:#222;color:#fff;display:flex;align-items:end}
-.romance-possibilities__moment>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.88);z-index:0}
-.romance-possibilities__shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.63),rgba(0,0,0,.06) 82%),linear-gradient(0deg,rgba(0,0,0,.48),transparent 65%);z-index:1;pointer-events:none}
-.romance-possibilities__content{position:relative;z-index:2;max-width:990px;padding:clamp(40px,7vw,115px) var(--w-gutter)}
-.romance-possibilities__content .section-label{color:#e3c98b}
-.romance-possibilities__content h3{font:400 clamp(55px,7.2vw,115px)/.98 var(--w-serif);letter-spacing:-.059em;margin:25px 0 22px;text-wrap:balance}
-.romance-possibilities__content p{font-size:clamp(15px,1.25vw,19px);line-height:1.7;max-width:550px;margin:0;color:#f4f0e7}
-
-
-.romance-possibilities__next{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:45px var(--w-gutter) clamp(100px,13vw,180px);border-bottom:1px solid #e9e6e1}
-.romance-possibilities__next p{font:400 clamp(20px,2vw,34px)/1.25 var(--w-serif);letter-spacing:-.02em;margin:0}
-.romance-breath{background:#fff;padding:clamp(85px,12vw,180px) var(--w-gutter);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(50px,9vw,170px);align-items:center}
-.romance-breath__image{position:relative;margin:0 0 40px 3vw}
-.romance-breath__image img{display:block;width:100%;height:min(80svh,810px);min-height:420px;object-fit:cover}
-.romance-breath__image>span{position:absolute;right:-10px;bottom:-36px;font:600 9px/1.4 var(--w-sans);letter-spacing:.18em}
-.romance-breath__copy{max-width:710px}
-.romance-breath__copy h2{font-size:clamp(45px,5.4vw,89px);margin:27px 0 28px}
-.romance-breath__copy p{line-height:1.85;color:#68645e;font-size:clamp(15px,1.14vw,18px);max-width:560px;margin:0 0 36px}
-.romance-editorial{background:#fff;padding:clamp(70px,11vw,155px) var(--w-gutter) clamp(100px,13vw,180px)}
-.romance-editorial__heading{max-width:1150px}
-.romance-editorial__heading h2{margin:31px 0}
-.romance-editorial__heading>p{font-size:clamp(15px,1.18vw,19px);line-height:1.8;color:#68645e;max-width:610px}
-.romance-editorial__composition{position:relative;min-height:clamp(800px,105vw,1470px);margin-top:clamp(45px,6vw,85px)}
-.romance-editorial__image{margin:0;position:absolute}
-.romance-editorial__image img{width:100%;height:100%;object-fit:cover}
-.romance-editorial__image--large{top:0;left:3%;width:60%;height:56%;z-index:1}
-.romance-editorial__image--small{right:1%;top:12%;width:30%;height:33%;z-index:2}
-.romance-editorial__image--portrait{bottom:8%;right:13%;width:41%;height:43%;z-index:3}
-.romance-editorial__image figcaption{bottom:-23px}
-.romance-editorial__action{margin-top:2vw;border-top:1px solid #e6e3df;padding-top:32px;text-align:right}
-.page-home .home-closing__body h2 em{color:#c4ae7f}
-.page-home .home-closing__body h2{max-width:950px}
+/* Home choreography. Original ATREZZO implementation from observed compositions.
+   Navigation 01, VEIL, Buttons 01 and Expand retain their own effect ownership. */
+.page-home {--home-ink:#111;--home-gold:#b59a60;background:#fff}
+.page-home main {overflow:clip}
+.page-home .hero--video {min-height:0}
+.page-home .hero__media {transform:translate3d(0,var(--am-hero-exit-y,0px),0);will-change:transform}
+.page-home .section-label {color:#6f5b32;font-weight:500;letter-spacing:.13em}
+.page-home h2 {font:400 clamp(44px,5.4vw,84px)/1.02 var(--w-serif);letter-spacing:-.055em;margin:24px 0}
+.page-home h2 em {font-weight:400}
+.page-home .home-intro {position:relative;padding:130px 24px 150px;text-align:center}
+.page-home .home-intro h1 {font-size:clamp(55px,6.4vw,98px);margin:30px auto 54px;max-width:950px}
+.page-home .home-intro h1 em {color:#111}
+.page-home .home-intro__foot {display:block;border:0;padding:0}
+.page-home .home-intro__narrative {max-width:720px;margin:0 auto 42px}
+.page-home .home-intro__narrative p {max-width:none;margin:0 0 24px;font-size:clamp(17px,1.45vw,22px);line-height:1.55;color:#333}
+.page-home .wedding-scroll .ats-stage {background:#fff}
+.page-home .wedding-scroll .ats-center-photo img {filter:none}
+.page-home .wedding-scroll .ats-title-overlay {left:10vw;max-width:920px}
+.page-home .wedding-scroll .ats-title-overlay h2 {font-size:clamp(52px,7vw,106px)}
+.page-home .wedding-scroll .ats-title-overlay p {font-size:17px;line-height:1.6;max-width:540px}
+.romance-possibilities {background:#fff}
+.romance-possibilities__intro {padding:130px 24px 150px;text-align:center}
+.romance-possibilities__intro h2 {max-width:850px;margin:30px auto}
+.romance-possibilities__intro p {max-width:700px;margin:0 auto;font-size:21px;line-height:1.5}
+.romance-possibilities__stage {position:relative;isolation:isolate}
+/* Four independent photographic stories: white field, central copy, four edge images.
+   1440 reference: 216px square at (216,0), 288x360 at (1080,72),
+   360x438 at (0,360), 288x192 at (1152,605). */
+.romance-story {position:relative;--story-height:max(72.5vw,100svh);min-height:var(--story-height)}
+.romance-story__panel[data-am-stack-card] {position:relative;top:auto;height:var(--story-height);overflow:hidden;background:#fff;color:#111;transform:none;transform-origin:center top}
+[data-am-ready]>.romance-story {height:calc(var(--story-height) + 8.75vw)}
+[data-am-ready]>.romance-story>.romance-story__panel {position:sticky;top:min(0px,calc(100svh - var(--story-height)));transform:translateY(var(--am-card-y,0px)) scale(var(--am-card-scale,1))}
+.romance-story__panel::after {z-index:5!important;opacity:var(--am-card-dim,0);background:#111}
+.romance-story__composition {position:relative;min-height:100%;}
+.romance-story__heading {position:absolute;top:12.5vw;left:34%;width:32%;text-align:center;z-index:1}
+.romance-story__heading h3 {margin:22px 0 0;font:400 clamp(42px,4.6vw,80px)/.98 var(--w-sans);letter-spacing:-.055em}
+.romance-story__heading h3>span,.romance-story__heading h3>em {display:block}
+.romance-story__heading h3>em {font-family:var(--w-serif);font-weight:400;color:#806a41}
+.romance-story__photo {position:absolute;margin:0;overflow:hidden}
+.romance-story__photo img {width:100%;height:100%;object-fit:cover}
+.romance-story__photo--0 {left:15%;top:0;width:15%;height:15vw}
+.romance-story__photo--1 {left:75%;top:5vw;width:20%;height:25vw}
+.romance-story__photo--2 {left:0;top:25vw;width:25%;height:30.4vw}
+.romance-story__photo--3 {right:0;top:42vw;width:20%;height:13.33vw}
+.romance-story__copy {position:absolute;left:35%;top:30vw;width:30%;text-align:center}
+.romance-story__copy p {margin:0;font-size:clamp(16px,1.24vw,20px);line-height:1.46}
+.romance-possibilities__next {padding:35px 24px 110px;text-align:center}
+/* Human editorial scene: portrait offset at 25vw and a long, quiet column. */
+.romance-breath {background:#fff;position:relative;display:grid;grid-template-columns:20vw 30vw;gap:5vw;padding:110px 15vw 130px 25vw;align-items:start}
+.romance-breath__image {margin-top:100px;height:29vw;overflow:hidden;transform:translateY(var(--am-quote-y,0px))}
+.romance-breath__image img {width:100%;height:100%;object-fit:cover}
+.romance-breath__copy h2 {font-size:clamp(38px,3.6vw,58px);margin:32px 0}
+.romance-breath__copy .romance-breath__statement {font:italic 400 clamp(26px,2.35vw,40px)/1.27 var(--w-serif);letter-spacing:-.025em;margin:0 0 35px}
+.romance-breath__copy>.section-label {display:block;max-width:300px;line-height:1.8}
+/* The photo strip expands on hover/focus and becomes native horizontal scroll on mobile. */
+.romance-editorial {background:#fff}
+.romance-editorial__prelude {display:grid;grid-template-columns:15vw 25vw;gap:5vw;padding:80px 0 100px 5vw;align-items:start}
+.romance-editorial__prelude p {margin:0;font-size:17px;line-height:1.5}
+.romance-editorial__track[data-am-ambassador-track] {gap:6px}
+.romance-editorial__track .am-ambassador {height:38vw;min-height:0;display:block}
+.romance-editorial__track .am-ambassador img {display:block;object-position:center}
+.romance-editorial__controls {display:none}
+.romance-editorial__heading {display:flex;align-items:center;justify-content:space-between;gap:12vw;padding:130px 10vw 130px}
+.romance-editorial__heading h2 {font-size:clamp(44px,4vw,66px);max-width:510px;margin:0}
+.romance-editorial__composition {display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.romance-editorial__image {margin:0;height:54vw;position:relative;overflow:hidden}
+.romance-editorial__image img {display:block;width:100%;height:100%;object-fit:cover}
+.romance-editorial__image::after {content:'';position:absolute;inset:0;background:linear-gradient(#0003,transparent 30%,#0003);pointer-events:none}
+.romance-editorial__image figcaption {position:absolute;left:7%;top:7%;z-index:2;color:white;font:400 clamp(28px,3.2vw,52px)/1 var(--w-serif);text-shadow:0 2px 12px #0008}
+.romance-editorial__feeling {margin:0;padding:24px;text-align:center;font-size:10px;letter-spacing:.16em}
+.page-home .home-closing {display:block;text-align:center;padding:145px 24px 130px}
+.page-home .home-closing__index {display:block}
+.page-home .home-closing__index .section-label {color:#d4c8ac}
+.page-home .home-closing__body {max-width:650px;margin:30px auto 0}
+.page-home .home-closing__body h2 {font-size:clamp(44px,4.2vw,68px);max-width:none;margin:0 0 36px}
+.page-home .home-closing__body h2 em {color:#b59a60}
+.page-home .home-closing__body p {max-width:520px;margin:0 auto 35px;font-size:18px;line-height:1.6;color:#c4c4c4}
+.page-home .site-footer {background:#111;color:#aaa;text-align:center;padding-top:35px}
+.page-home .home-disclosure {margin:60px auto;font-size:12px;line-height:1.7}
+.page-home .footer-bottom {border-color:#ffffff28;font-size:9px}
+.page-home [data-am-footer-line] {background:#ffffff40;transform:scaleX(var(--am-line-scale,1))}
+/* Tablet and mobile use a distinct title → photograph → paragraph composition.
+   No peripheral miniatures and no image behind the reading column. */
 @media(max-width:1100px){
-  
-  .romance-possibilities__moment{min-height:74svh}
-  .romance-possibilities__content h3{font-size:clamp(45px,7vw,80px)}
-  .romance-breath{gap:40px}
-  .romance-editorial__composition{min-height:850px}
+ .page-home .home-intro {padding:90px 7vw 100px}
+ .page-home .home-intro__narrative {max-width:650px}
+ .romance-possibilities__intro {padding:90px 7vw 110px}
+ .romance-possibilities__intro p {font-size:19px;max-width:650px}
+ .romance-story {--story-height:max(844px,100svh)}
+ [data-am-ready]>.romance-story {height:calc(var(--story-height) + 5vh)}
+ .romance-story__panel[data-am-stack-card] {height:var(--story-height)}
+ [data-am-ready]>.romance-story>.romance-story__panel {top:min(0px,calc(100svh - var(--story-height)))}
+ .romance-story__composition {display:flex;flex-direction:column;padding:60px 10px 70px;align-items:center}
+ .romance-story__heading {position:relative;inset:auto;width:100%;max-width:650px;order:0}
+ .romance-story__heading h3 {font-size:clamp(40px,5.5vw,66px);max-width:600px;margin:22px auto 30px;line-height:1.01}
+ .romance-story__photo {display:none}
+ .romance-story__photo--0 {display:block;position:relative;inset:auto;width:100%;max-width:740px;height:32svh;min-height:230px;max-height:360px;order:1}
+ .romance-story__copy {position:relative;inset:auto;order:2;width:100%;max-width:600px;padding:27px 28px 0}
+ .romance-story__copy p {font-size:17px;line-height:1.45}
+ .romance-possibilities__next {padding:25px 24px 90px}
+ .romance-breath {padding:90px 8vw;grid-template-columns:30vw 1fr;gap:7vw}
+ .romance-breath__image {height:44vw;transform:none}
+ .romance-breath__copy h2 {font-size:42px}
+ .romance-breath__copy .romance-breath__statement {font-size:28px}
+ .romance-editorial__prelude {grid-template-columns:25% 55%;gap:10%;padding:60px 8vw 80px}
+ .romance-editorial__track[data-am-ambassador-track] {overflow-x:auto;scroll-snap-type:none;gap:8px;scrollbar-width:thin}
+ .romance-editorial__track .am-ambassador {flex:0 0 65vw;height:75vw;max-height:650px;scroll-snap-align:none}
+ .romance-editorial__people[data-am-ready] .romance-editorial__controls {display:flex;justify-content:end;gap:8px;padding:20px}
+ .romance-editorial__controls button {width:44px;height:44px;border:1px solid #777;border-radius:50%;background:transparent;color:#111;cursor:pointer}
+ .romance-editorial__heading {padding:90px 8vw;gap:10vw}
+ .romance-editorial__image {height:65vw}
 }
-@media(max-width:760px){
-  .page-home .home-intro__foot{display:block}
-  .page-home .home-intro__narrative{margin-bottom:28px}
-  .romance-collage{padding-top:95px}
-  .romance-collage__opening h2,.romance-possibilities__intro h2,.romance-breath__copy h2,.romance-editorial__heading h2{font-size:clamp(45px,10vw,70px)}
-  
-  
-  
-  
-  
-  .romance-possibilities__intro{padding-top:85px}
-  .romance-possibilities__moment{min-height:78svh}
-  .romance-possibilities__moment>img{object-position:50% 50%}
-  .romance-possibilities__shade{background:linear-gradient(0deg,rgba(0,0,0,.74),rgba(0,0,0,.04) 86%)}
-  .romance-possibilities__content{padding:35px var(--w-gutter) 55px}
-  .romance-possibilities__content h3{font-size:clamp(44px,10vw,70px)}
-  .romance-possibilities__content p{font-size:15px}
-  .romance-possibilities__next{display:block;padding-top:42px}
-  .romance-possibilities__next p{margin-bottom:24px}
-  .romance-breath{grid-template-columns:1fr;gap:65px;padding-top:90px}
-  .romance-breath__image{margin:0 10vw 0 0}
-  .romance-breath__image img{height:64svh;min-height:390px}
-  .romance-editorial__composition{min-height:115vw}
-  .romance-editorial__image--large{left:0;width:70%;height:62%}
-  .romance-editorial__image--small{width:38%;height:37%;right:0;top:12%}
-  .romance-editorial__image--portrait{right:5%;width:51%;height:49%;bottom:2%}
-  .romance-editorial__action{margin-top:50px}
-}
-@media(max-width:480px){
-  
-  
-  
-  
-  .romance-possibilities__moment{min-height:660px}
-  .romance-breath__image img{height:500px;min-height:0}
-  .romance-editorial__composition{min-height:690px}
-  .romance-editorial__image--large{height:48%}
-  .romance-editorial__image--small{height:31%}
-  .romance-editorial__image--portrait{bottom:3%;height:47%;width:55%}
+@media(max-width:600px){
+ .page-home .home-intro h1 {font-size:53px;letter-spacing:-.06em;margin:28px auto 35px}
+ .page-home .home-intro__narrative p {font-size:18px;line-height:1.55}
+ .page-home .wedding-scroll .ats-title-overlay {left:7vw;width:86vw}
+ .page-home .wedding-scroll .ats-title-overlay h2 {font-size:48px}
+ .page-home .wedding-scroll .ats-title-overlay p {font-size:16px}
+ .page-home .wedding-scroll.ats-enhanced .ats-scene {height:150svh;min-height:0}
+ .page-home .wedding-scroll .ats-scene__bar strong {font-size:10px}
+ .romance-possibilities__intro h2 {font-size:46px}
+ .romance-possibilities__intro p {font-size:18px}
+ .romance-story__heading h3 {font-size:42px;max-width:350px;letter-spacing:-.05em}
+ .romance-story__photo--0 {height:210px;min-height:0}
+ .romance-story__copy {padding:27px 28px 0}
+ .romance-story__copy p {font-size:16px;line-height:1.5}
+ .romance-breath {display:flex;flex-direction:column;gap:35px;padding:75px 7vw}
+ .romance-breath__image {margin:0;width:72%;height:100vw}
+ .romance-breath__copy h2 {font-size:43px}
+ .romance-breath__copy .romance-breath__statement {font-size:29px;line-height:1.28}
+ .romance-editorial__prelude {grid-template-columns:30% 1fr;gap:8%;padding:50px 7vw 70px}
+ .romance-editorial__prelude p {font-size:16px;line-height:1.5}
+ .romance-editorial__prelude .section-label {font-size:9px;line-height:1.8;letter-spacing:.04em}
+ .romance-editorial__track .am-ambassador {flex-basis:80vw;height:110vw}
+ .romance-editorial__heading {display:block;padding:90px 7vw 70px}
+ .romance-editorial__heading h2 {font-size:47px;max-width:330px;margin-bottom:40px}
+ .romance-editorial__composition {grid-template-columns:1fr;gap:6px;padding:0 5px}
+ .romance-editorial__image {height:118vw}
+ .romance-editorial__image figcaption {font-size:33px}
+ .page-home .home-closing {padding:110px 7vw 100px}
+ .page-home .home-closing__body h2 {font-size:43px}
+ .page-home .home-closing__body p {font-size:17px}
+ .page-home .footer-bottom {align-items:center}
 }
 @media(prefers-reduced-motion:reduce){
-  }
-
-
-/* Integration guards: reused engine owns transforms and sticky positioning. */
-.romance-possibilities__stage[data-am-stack]{isolation:isolate}
-.romance-possibilities__moment[data-am-stack-card]{position:sticky;top:7svh;height:86svh;min-height:0}
-.romance-possibilities__moment[data-am-stack-card]::after{z-index:2;opacity:var(--am-card-dim,0);background:#000}
-.romance-possibilities__moment .romance-possibilities__content{z-index:3}
-.romance-editorial__image[data-am-destination]{position:absolute;overflow:hidden}
-.romance-editorial__image[data-am-destination] figcaption{left:20px;bottom:18px;color:#fff;text-shadow:0 1px 15px #0009;z-index:2}
-.romance-breath__image[data-am-parallax]>span{right:20px;bottom:18px;color:#fff;text-shadow:0 1px 15px #0009}
-@media(max-width:1100px){
-  .romance-possibilities__moment[data-am-stack-card]{position:relative;top:auto;height:auto;min-height:82svh;transform:none!important}
-  .romance-collage__scroll .am-hero__media{box-shadow:0 8px 30px rgba(18,16,12,.12)}
+ html {scroll-behavior:auto!important}
+ .page-home .hero__media,.romance-breath__image {transform:none!important;will-change:auto}
+ [data-am-ready]>.romance-story {height:auto!important}
+ .romance-story__panel[data-am-stack-card] {position:relative!important;top:auto!important;transform:none!important}
+ .romance-story__panel::after {opacity:0!important}
+ .page-home [data-am-footer-line] {transform:none!important}
 }
-@media(prefers-reduced-motion:reduce){
-  .romance-collage__scroll .am-hero__media--center{--am-scale:1}
+/* Extend each sticky containing block across its successor, while retaining the
+   measured 81.25vw document interval. Without this, it unpins before the handoff. */
+@media(prefers-reduced-motion:no-preference){
+ [data-am-ready]>.romance-story:not(:last-child) {height:calc(2 * var(--story-height) + 8.75vw);margin-bottom:calc(-1 * var(--story-height))}
 }
-
-@media(max-width:1100px){.romance-possibilities__moment[data-am-stack-card]::after{opacity:0!important}}
+@media(max-width:1100px) and (prefers-reduced-motion:no-preference){
+ [data-am-ready]>.romance-story:not(:last-child) {height:calc(2 * var(--story-height) + 5vh)}
+}

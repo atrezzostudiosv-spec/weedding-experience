@@ -1,0 +1,10 @@
+import { readFileSync } from 'node:fs';
+const master=readFileSync('docs/HOME-EDITORIAL-MASTER.md','utf8');
+const html=readFileSync('dist/index.html','utf8');
+const normalize=s=>s.replace(/\\n/g,' ').replace(/<br\s*\/?\s*>/g,' ').replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/&#39;|&apos;/g,"'").replace(/&quot;/g,'"').replace(/\s+/g,' ').trim();
+const text=normalize(html);
+const fields=[...master.matchAll(/- (?:Eyebrow|H1|H2|Paragraph(?: [12])?|Supporting|Introduction|Title|CTA): `([^`]+)`/g)].map(m=>m[1]);
+for(const copy of fields)if(!text.includes(normalize(copy)))throw new Error(`Compiled Home missing literal master copy: ${copy}`);
+for(const copy of ['Explore the Services','THE SETTING','THE DETAILS','THE FEELING','An Atrezzo Studios design concept. Copy and imagery are illustrative.'])if(!text.includes(copy))throw new Error(`Missing: ${copy}`);
+const links=['about','services','gallery','contact'];for(const route of links)if(!html.includes(`href="/weedding-experience/${route}/"`))throw new Error(`Missing CTA target: ${route}`);
+console.log(`PASS: ${fields.length} literal master fields, captions, disclosure and four CTA routes in compiled HTML`);
