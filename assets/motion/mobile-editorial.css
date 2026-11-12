@@ -1,4 +1,4 @@
-/* Wedding mobile editorial story. No style can affect desktop. */
+/* Wedding editorial story. On desktop, only narrative paragraphs use the new reveal. */
 @media (max-width:767px) and (prefers-reduced-motion:no-preference) {
   #main [data-wm-entry="title"] .wm-title-word {display:inline-block;white-space:nowrap}
   #main [data-wm-entry="title"] .wm-letter {
@@ -39,4 +39,20 @@
   }
   .page-home #main .romance-story__panel::after {opacity:0!important}
   .page-home #main .romance-story__composition {min-height:0;padding-bottom:60px}
+}
+
+/* Desktop: keep every headline immediately readable, including the legacy
+   ATZ-MOT-001/002 spans. Do not alter the original image, sticky or VEIL engines. */
+@media (min-width:1101px) {
+  #main :is(h1,h2,h3,h4,h5,h6)[data-am-text] .am-char,
+  #main :is(h1,h2,h3,h4,h5,h6) [data-am-text] .am-char {
+    opacity:1!important;transform:none!important;transition:none!important;
+  }
+}
+@media (min-width:1101px) and (prefers-reduced-motion:no-preference) {
+  #main [data-wm-reading] .wm-reading-word {
+    opacity:var(--wm-opacity,1);
+    transition:opacity .28s ease-out;
+  }
+  #main [data-wm-reading].wm-reading-done .wm-reading-word {opacity:1}
 }
