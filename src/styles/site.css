@@ -30,7 +30,6 @@ em{font-weight:400}
 .wordmark__second{font:400 19px/1 var(--w-serif);letter-spacing:-.035em}
 .wordmark__dot{color:var(--w-gold)}
 .site-header__right{display:flex;align-items:center;gap:clamp(20px,3vw,44px)}
-.header-kicker{font:600 9px/1.4 var(--w-sans);letter-spacing:.18em;white-space:nowrap}
 body.azn1 .azn1-fallback-nav{gap:18px}
 body.azn1 .azn1-fallback-nav a{color:inherit}
 body.azn1 .azn1-menutrigger{color:inherit;border:1px solid currentColor;display:none;min-height:44px;padding:12px 15px}
@@ -148,7 +147,7 @@ body .ab-directional:hover,body .ab-directional:focus-visible{color:#111}
 .footer-top__link:hover{color:#897347}
 .footer-bottom{border-top:1px solid var(--w-line);padding:22px 0 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
 .footer-bottom a{text-decoration:none}
-@media(max-width:1100px){.header-kicker{display:none}.contact-layout{grid-template-columns:1fr 1fr}}
+@media(max-width:1100px){.contact-layout{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){
   .site-header{height:78px}.site-header__inner{gap:10px}
   body.azn1 .azn1-fallback-nav{flex-wrap:wrap;gap:10px}
@@ -160,7 +159,6 @@ body .ab-directional:hover,body .ab-directional:focus-visible{color:#111}
 }
 @media(max-width:650px){
   .site-header{height:72px}
-  .header-kicker{display:none}
   .wordmark__first{font-size:8px}.wordmark__second{font-size:16px}
   body.azn1 .azn1-fallback-nav{max-width:195px;justify-content:end;gap:5px 10px}
   body.azn1 .azn1-fallback-nav a{font-size:9px}
