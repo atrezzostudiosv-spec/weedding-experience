@@ -62,7 +62,7 @@ body.azn1 .azn1-menu__footer{color:#a9a9a9}
 body.azn1 .azn1-menu__close{display:inline-flex;align-items:center;gap:8px;min-height:44px}
 body.azn1 .azn1-menu__left{overflow-y:auto;min-height:0}
 body.azn1 .azn1-menu__links{flex-shrink:0}
-@media(max-width:620px){body.azn1 .azn1-menu__left{height:100%;min-height:0;max-height:100dvh;background:transparent}body.azn1 .azn1-menu__links strong{font-size:clamp(36px,11vw,65px)}}
+@media(max-width:620px){body.azn1 .azn1-menu__left{height:100%;min-height:0;max-height:100dvh}}
 @media(max-height:700px){body.azn1 .azn1-menu__links{padding:20px 0}body.azn1 .azn1-menu__links a{padding:12px 0}}
 /* Native original Atrezzo CTA engine. */
 body .ab-underline{--ab-ink:#111}
