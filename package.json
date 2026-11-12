@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build && node scripts/verify-dist.mjs && node scripts/check-built-editorial.mjs",
     "preview": "astro preview",
-    "check:source": "node scripts/check-source.mjs && node scripts/check-home-master.mjs"
+    "check:source": "node scripts/check-source.mjs && node scripts/check-home-master.mjs && node --test scripts/mobile-editorial.test.mjs"
   },
   "dependencies": {
     "astro": "7.4.7"
