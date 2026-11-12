@@ -8,7 +8,7 @@ import '../styles/services.css';
 
 const base = import.meta.env.BASE_URL;
 ---
-<SiteLayout title={copy.title} description={copy.intro} page="services" editorialMotion editorialExpand>
+<SiteLayout title="Wedding & Event Services" description="Explore weddings, private events, event design and coordination, with a planning journey from the first conversation to the celebration." page="services" editorialMotion editorialExpand>
   <div class="ats-scope service-opening" id="services-opening">
     <section class="ats-scene ats-scene--expand" data-ats-effect="expand" aria-labelledby="services-title">
       <div class="ats-stage">
@@ -76,8 +76,8 @@ const base = import.meta.env.BASE_URL;
         ))}
       </div>
       <div class="journey-controls" aria-label="Planning stage controls">
-        <button type="button" data-am-ambassador-prev aria-label="Previous planning stage">←</button>
-        <button type="button" data-am-ambassador-next aria-label="Next planning stage">→</button>
+        <button type="button" class="control-chevron control-chevron--prev" data-am-ambassador-prev aria-label="Previous planning stage"></button>
+        <button type="button" class="control-chevron" data-am-ambassador-next aria-label="Next planning stage"></button>
       </div>
     </div>
   </section>

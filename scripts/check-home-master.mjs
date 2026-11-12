@@ -39,7 +39,7 @@ if(home.includes("data-romance-reveal")||home.includes("data-romance-story")) fa
 for(const path of ["public/atrezzo-core/motion-v1/atrezzo-motion.js","public/atrezzo-core/motion-v1/atrezzo-motion.css","public/atrezzo-core/motion-v1/wedding-init.js"]){
   if(!existsSync(path)) fail(`Actual original ATREZZO Motion v1 runtime missing: ${path}`);
 }
-for(const anchor of ["atrezzo-navigation-01.js","atrezzo-transitions.js","atrezzobuttons-01.js","atrezzo-scroll-sections.js"]){
+for(const anchor of ["atrezzo-transitions.js","atrezzobuttons-01.js","atrezzo-scroll-sections.js"]){
   if(!layout.includes(anchor)) fail(`Approved ATREZZO engine was removed: ${anchor}`);
 }
 if(!layout.includes("motion-v1/wedding-init.js")) fail("Motion v1 is not initialized");

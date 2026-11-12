@@ -1,76 +1,69 @@
 ---
 import "../styles/site.css";
-import { navigation, images } from "../data/site.js";
+import { navigation } from "../data/site.js";
 const { title, description, page = "home", homeScroll = false, editorialMotion = false, editorialExpand = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const asset = (p) => base + p;
 const current = navigation.find((n) => n.id === page) ?? navigation[0];
+const siteName = "The Wedding Experience";
+const pageTitle = page === "home" ? `${siteName} | ${title}` : `${title} | ${siteName}`;
+const canonical = new URL(asset(current.slug), Astro.site).href;
+const shareImage = new URL(asset("assets/video/wedding-hero-poster.jpg"), Astro.site).href;
+const shareImageAlt = "An outdoor wedding aisle lined with white flowers beneath a cloudy sky.";
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
     <meta name="robots" content="noindex,nofollow,noarchive" />
     <meta name="description" content={description} />
-    <title>{title} | The Wedding Experience — Atrezzo Concept</title>
+    <title>{pageTitle}</title>
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+    <meta property="og:image:alt" content={shareImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImage} />
+    <meta name="twitter:image:alt" content={shareImageAlt} />
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
-    <link rel="stylesheet" href={asset("atrezzo-core/nav/atrezzo-navigation-01.css")} />
     <link rel="stylesheet" href={asset("atrezzo-core/veil/atrezzo-transitions.css")} />
     <link rel="stylesheet" href={asset("atrezzo-core/buttons/atrezzobuttons-01.css")} />
     {(homeScroll || editorialExpand) && <link rel="stylesheet" href={asset("atrezzo-core/scroll01/atrezzo-scroll-sections.css")} />}
     {(homeScroll || editorialMotion) && <link rel="stylesheet" href={asset("atrezzo-core/motion-v1/atrezzo-motion.css")} />}
     <script is:inline src={asset("atrezzo-core/veil/atrezzo-preflight.js")}></script>
   </head>
-  <body class={"azn1 page-" + page}>
+  <body class={"page-" + page}>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="site-header__inner">
         <a class="wordmark" href={base} data-atz-link data-atz-effect="veil" aria-label="The Wedding Experience — Home">
           <span class="wordmark__first">THE WEDDING</span><span class="wordmark__second">EXPERIENCE<span class="wordmark__dot">.</span></span>
         </a>
-        <div class="site-header__right">
-          <span class="header-kicker" aria-hidden="true">AN ATREZZO EDITORIAL CONCEPT</span>
-          <nav class="azn1-fallback-nav" aria-label="Primary navigation">
-            {navigation.map((link) => (
-              <a href={asset(link.slug)} aria-current={page === link.id ? "page" : undefined} data-atz-link data-atz-effect="veil">{link.label}</a>
-            ))}
-          </nav>
-          <button class="azn1-menutrigger" data-azn1-menu-trigger type="button" aria-expanded="false" aria-controls="wedding-menu">
-            <span>Menu</span><span class="azn1-menutrigger__glyph" aria-hidden="true"></span>
-          </button>
-        </div>
+        <nav class="site-nav" aria-label="Primary navigation">
+          {navigation.map((link) => (
+            <a href={asset(link.slug)} aria-current={page === link.id ? "page" : undefined} data-atz-link data-atz-effect="veil">{link.label}</a>
+          ))}
+        </nav>
       </div>
     </header>
     <main id="main" tabindex="-1"><slot /></main>
     <footer class="site-footer">
-      {page !== "home" && <div class="footer-top"><span class="section-label">A celebration of thoughtful details</span><a class="footer-top__link" href={asset("contact/")} data-atz-link data-atz-effect="veil">Begin a conversation <span aria-hidden="true">↗</span></a></div>}
+      {page !== "home" && <div class="footer-top"><span class="section-label">A celebration of thoughtful details</span><a class="footer-top__link" href={asset("contact/")} data-atz-link data-atz-effect="veil">Begin a conversation</a></div>}
       {page === "home" && <><div data-am-footer-line aria-hidden="true"></div><p class="home-disclosure">An Atrezzo Studios design concept. Copy and imagery are illustrative.</p></>}
-      <div class="footer-bottom"><span>THE WEDDING EXPERIENCE <span class="gold-mark">✦</span></span><span>DESIGN CONCEPT BY ATREZZO STUDIOS · NOT AN OFFICIAL CLIENT WEBSITE</span><a href={base} data-atz-link data-atz-effect="veil">Back to home ↑</a></div>
+      <div class="footer-bottom"><span>THE WEDDING EXPERIENCE</span><span>DESIGN CONCEPT BY ATREZZO STUDIOS · NOT AN OFFICIAL CLIENT WEBSITE</span><a href={base} data-atz-link data-atz-effect="veil">Back to home</a></div>
     </footer>
-    <div id="wedding-menu" class="azn1-menu" data-azn1-menu hidden role="dialog" aria-modal="true" aria-label="Navigation">
-      <div class="azn1-menu__left">
-        <div class="azn1-menu__top">
-          <strong class="menu-wordmark">THE WEDDING EXPERIENCE</strong>
-          <button type="button" data-azn1-menu-close class="azn1-menu__close">Close <span aria-hidden="true">×</span></button>
-        </div>
-        <ul class="azn1-menu__links">
-          {navigation.map((link, index) => (
-            <li><a href={asset(link.slug)} data-azn1-menu-link data-atz-link data-atz-effect="veil" aria-current={page === link.id ? "page" : undefined}>
-              <em>{String(index + 1).padStart(2,"0")}</em><strong>{link.label}</strong><span aria-hidden="true">↗</span>
-            </a></li>
-          ))}
-        </ul>
-        <p class="azn1-menu__footer">An Atrezzo Studios design study<br/>Inspired by the art of celebration</p>
-      </div>
-      <div class="azn1-menu__photo" aria-hidden="true">
-        {images.menu.map((src, index) => (
-          <img data-azn1-menu-photo class={index === 0 ? "is-active" : ""} src={src} alt="" loading="lazy" />
-        ))}
-      </div>
-    </div>
-    <script is:inline src={asset("atrezzo-core/nav/atrezzo-navigation-01.js")}></script>
     <script is:inline src={asset("atrezzo-core/buttons/atrezzobuttons-01.js")}></script>
     {(homeScroll || editorialExpand) && <script is:inline src={asset("atrezzo-core/scroll01/atrezzo-scroll-sections.js")}></script>}
     {(homeScroll || editorialMotion) && <script is:inline type="module" src={asset("atrezzo-core/motion-v1/wedding-init.js")}></script>}
