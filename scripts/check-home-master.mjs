@@ -26,11 +26,14 @@ for(const name of ["Estado A — WEDDINGS","Estado B — PRIVATE EVENTS","Estado
 }
 const hero=home.match(/<section class="hero hero--video"[\s\S]*?<\/section>/)?.[0]??"";
 if(!hero || /<(?:h[1-6]|p|a)\b|<PrimaryAction/.test(hero)) fail("Hero must contain the video and navigation only — no text or CTA");
-const n=[...home.matchAll(/data-am-media-index="(\d)"/g)].map(m=>Number(m[1]));
-if(n.join(",")!=="0,1,2,3,4,5") fail("ATREZZO HomeHeroCollage requires six images indexed 0–5");
-for(const needle of ['data-am-home-hero','data-am-stack','data-am-stack-card','data-am-text','data-am-parallax','data-am-destination']){
-  if(!home.includes(needle)) fail(`Missing reused library component: ${needle}`);
+if(home.includes('data-am-home-hero') || home.includes('data-am-media-index')) fail("Unapproved extra six-photo collage must not return");
+for(const needle of ['data-am-hero-exit','data-am-stack-slot','data-am-stack-card','data-am-text','data-am-quote-image','data-am-destination','data-am-ambassadors']){
+  if(!home.includes(needle)) fail(`Missing scene component: ${needle}`);
 }
+for(const [section,key] of [[s2,"Eyebrow"],[s2,"CTA"],[s3,"Eyebrow"],[s4,"Eyebrow"],[s5,"Eyebrow"],[s5,"CTA"],[s6,"Eyebrow"],[s6,"CTA"],[s7,"Eyebrow"],[s7,"CTA"]]) {
+  const copy=getCopy(section,key); if(copy && !home.includes(copy)) fail(`Missing literal master ${key}: ${copy}`);
+}
+if(!layout.includes('An Atrezzo Studios design concept. Copy and imagery are illustrative.')) fail('Master disclosure missing');
 if(home.includes("home-cinematic.js")||existsSync("src/scripts/home-cinematic.js")) fail("Obsolete parallel scroll engine must not return");
 if(home.includes("data-romance-reveal")||home.includes("data-romance-story")) fail("Obsolete animated markup must not return");
 for(const path of ["public/atrezzo-core/motion-v1/atrezzo-motion.js","public/atrezzo-core/motion-v1/atrezzo-motion.css","public/atrezzo-core/motion-v1/wedding-init.js"]){
@@ -40,4 +43,4 @@ for(const anchor of ["atrezzo-navigation-01.js","atrezzo-transitions.js","atrezz
   if(!layout.includes(anchor)) fail(`Approved ATREZZO engine was removed: ${anchor}`);
 }
 if(!layout.includes("motion-v1/wedding-init.js")) fail("Motion v1 is not initialized");
-if(!process.exitCode) console.log("PASS: full editorial master, video-only hero and original ATREZZO Motion library wiring preserved");
+if(!process.exitCode) console.log("PASS: full editorial master, video-only hero and ATREZZO Motion wiring and reference scene structure preserved");

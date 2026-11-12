@@ -74,3 +74,14 @@ Se cargan desde images.unsplash.com; son imágenes ilustrativas externas, no arc
 - Poster de respaldo: `wedding-hero-poster.jpg`, 85.828 bytes, extraído de la misma fuente.
 - Estado: AUTORIZADO POR EL USUARIO PARA ESTA PROPUESTA VISUAL. Titularidad/licencia de explotación comercial definitiva NO verificada; confirmar antes de publicación oficial.
 - No es fotografía ni video atribuido a un evento realizado por la futura clienta.
+
+## Home reference reconstruction — 2026-11-11
+User explicitly authorized preserving the selected hero and publishing the concept.
+Two additional illustrative photographs, downloaded locally for stable loading:
+
+| File | Photographer | Source | License | Crop / use |
+|---|---|---|---|---|
+| `public/assets/home/under-the-veil.jpg` | Jennifer Kalenberg | https://unsplash.com/photos/a-bride-and-groom-standing-under-a-veil-frdW9xXhfDw | Free Unsplash License, checked 2026-11-11 | Vertical centre crop; intimate portrait, story and editorial strip |
+| `public/assets/home/holding-hands.jpg` | Alexander Mass | https://unsplash.com/photos/bride-and-groom-holding-hands-with-wedding-veil-vAqBUUxfYk8 | Free Unsplash License, checked 2026-11-11 | Centre crop; hands, story and editorial strip |
+
+License: https://unsplash.com/license. These are illustrative stock scenes, not client work or endorsements. No reference-site media or proprietary code was copied into the website. Existing registered decorative stock imagery and approved hero are retained.

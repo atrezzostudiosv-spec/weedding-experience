@@ -45,7 +45,8 @@ const current = navigation.find((n) => n.id === page) ?? navigation[0];
     </header>
     <main id="main" tabindex="-1"><slot /></main>
     <footer class="site-footer">
-      <div class="footer-top"><span class="section-label">A celebration of thoughtful details</span><a class="footer-top__link" href={asset("contact/")} data-atz-link data-atz-effect="veil">Begin a conversation <span aria-hidden="true">↗</span></a></div>
+      {page !== "home" && <div class="footer-top"><span class="section-label">A celebration of thoughtful details</span><a class="footer-top__link" href={asset("contact/")} data-atz-link data-atz-effect="veil">Begin a conversation <span aria-hidden="true">↗</span></a></div>}
+      {page === "home" && <><div data-am-footer-line aria-hidden="true"></div><p class="home-disclosure">An Atrezzo Studios design concept. Copy and imagery are illustrative.</p></>}
       <div class="footer-bottom"><span>THE WEDDING EXPERIENCE <span class="gold-mark">✦</span></span><span>DESIGN CONCEPT BY ATREZZO STUDIOS · NOT AN OFFICIAL CLIENT WEBSITE</span><a href={base} data-atz-link data-atz-effect="veil">Back to home ↑</a></div>
     </footer>
     <div id="wedding-menu" class="azn1-menu" data-azn1-menu hidden role="dialog" aria-modal="true" aria-label="Navigation">
