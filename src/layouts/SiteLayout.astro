@@ -21,6 +21,9 @@ const shareImageAlt = "An outdoor wedding aisle lined with white flowers beneath
     <meta name="description" content={description} />
     <title>{pageTitle}</title>
     <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" sizes="32x32" href={asset("assets/brand/favicon-32.png")} />
+    <link rel="icon" type="image/svg+xml" sizes="any" href={asset("assets/brand/favicon.svg")} />
+    <link rel="apple-touch-icon" sizes="180x180" href={asset("assets/brand/apple-touch-icon.png")} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:locale" content="en_US" />
@@ -53,7 +56,6 @@ const shareImageAlt = "An outdoor wedding aisle lined with white flowers beneath
           <span class="wordmark__first">THE WEDDING</span><span class="wordmark__second">EXPERIENCE<span class="wordmark__dot">.</span></span>
         </a>
         <div class="site-header__right">
-          <span class="header-kicker" aria-hidden="true">AN ATREZZO EDITORIAL CONCEPT</span>
           <nav class="azn1-fallback-nav" aria-label="Primary navigation">
             {navigation.map((link) => (
               <a href={asset(link.slug)} aria-current={page === link.id ? "page" : undefined} data-atz-link data-atz-effect="veil">{link.label}</a>

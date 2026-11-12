@@ -2,6 +2,7 @@ import { existsSync,readFileSync } from 'node:fs';
 import {join} from 'node:path';
 const root='dist';
 const paths=['index.html','about/index.html','services/index.html','gallery/index.html','contact/index.html',
+  'assets/brand/favicon.svg','assets/brand/favicon-32.png','assets/brand/apple-touch-icon.png',
   'assets/video/wedding-hero-preview.mp4','assets/video/wedding-hero-poster.jpg','atrezzo-core/nav/atrezzo-navigation-01.css','atrezzo-core/nav/atrezzo-navigation-01.js',
   'atrezzo-core/veil/atrezzo-transitions.css','atrezzo-core/veil/atrezzo-transitions.js',
   'atrezzo-core/veil/atrezzo-preflight.js','atrezzo-core/buttons/atrezzobuttons-01.css',
@@ -16,6 +17,10 @@ const titles=new Set(), descriptions=new Set();
 for(const path of paths.filter(p=>p.endsWith('.html'))){
  const h=readFileSync(join(root,path),'utf8');
  if(!h.includes('noindex,nofollow')) throw new Error('Missing noindex on '+path);
+ if(/AN ATREZZO EDITORIAL CONCEPT|header-kicker/i.test(h)) throw new Error('Obsolete header label on '+path);
+ for(const [rel,asset] of [['icon','favicon-32.png'],['icon','favicon.svg'],['apple-touch-icon','apple-touch-icon.png']]){
+   if(!h.match(new RegExp('<link[^>]*rel="'+rel+'"[^>]*href="'+base+'assets/brand/'+asset.replaceAll('.','[.]')+'"[^>]*>'))) throw new Error('Missing favicon link on '+path+': '+asset);
+ }
  const nav=h.match(/<nav class="azn1-fallback-nav"[^>]*>(.*?)<\/nav>/s)?.[1];
  const menu=h.match(/<ul class="azn1-menu__links"[^>]*>(.*?)<\/ul>/s)?.[1];
  for(const marker of ['data-azn1-menu-trigger','data-azn1-menu-close','id="wedding-menu"','aria-controls="wedding-menu"','atrezzo-navigation-01.css','atrezzo-navigation-01.js']){
