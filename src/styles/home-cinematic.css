@@ -26,13 +26,26 @@
 /* Four independent photographic stories: white field, central copy, four edge images.
    1440 reference: 216px square at (216,0), 288x360 at (1080,72),
    360x438 at (0,360), 288x192 at (1152,605). */
-.romance-story {position:relative;--story-height:max(72.5vw,100svh);min-height:var(--story-height)}
+.romance-story {
+ position:relative;
+ --story-height:max(72.5vw,100svh);
+ --story-heading-top:12.5vw;
+ --story-reading-inset:clamp(32px,7svh,72px);
+ --story-pin-top:max(min(0px,calc(100svh - var(--story-height))),calc(var(--story-reading-inset) - var(--story-heading-top)));
+ min-height:var(--story-height);
+}
 .romance-story__panel[data-am-stack-card] {position:relative;top:auto;height:var(--story-height);overflow:hidden;background:#fff;color:#111;transform:none;transform-origin:center top}
 [data-am-ready]>.romance-story {height:calc(var(--story-height) + 8.75vw)}
-[data-am-ready]>.romance-story>.romance-story__panel {position:sticky;top:min(0px,calc(100svh - var(--story-height)));transform:translateY(var(--am-card-y,0px)) scale(var(--am-card-scale,1))}
+[data-am-ready]>.romance-story>.romance-story__panel {
+ /* Keep the heading in view both at the sticky stop and during the handoff. */
+ --story-exit-limit:calc(var(--story-reading-inset) - var(--story-heading-top) - var(--story-pin-top));
+ position:sticky;
+ top:var(--story-pin-top);
+ transform:translateY(max(var(--am-card-y,0px),var(--story-exit-limit))) scale(var(--am-card-scale,1));
+}
 .romance-story__panel::after {z-index:5!important;opacity:var(--am-card-dim,0);background:#111}
 .romance-story__composition {position:relative;min-height:100%;}
-.romance-story__heading {position:absolute;top:12.5vw;left:34%;width:32%;text-align:center;z-index:1}
+.romance-story__heading {position:absolute;top:var(--story-heading-top);left:34%;width:32%;text-align:center;z-index:1}
 .romance-story__heading h3 {margin:22px 0 0;font:400 clamp(42px,4.6vw,80px)/.98 var(--w-sans);letter-spacing:-.055em}
 .romance-story__heading h3>span,.romance-story__heading h3>em {display:block}
 .romance-story__heading h3>em {font-family:var(--w-serif);font-weight:400;color:#806a41}
@@ -86,11 +99,9 @@
  .page-home .home-intro__narrative {max-width:650px}
  .romance-possibilities__intro {padding:90px 7vw 110px}
  .romance-possibilities__intro p {font-size:19px;max-width:650px}
- .romance-story {--story-height:max(844px,100svh)}
+ .romance-story {--story-height:max(844px,100svh);--story-heading-top:60px;--story-reading-inset:clamp(24px,5svh,48px)}
  [data-am-ready]>.romance-story {height:calc(var(--story-height) + 5vh)}
- .romance-story__panel[data-am-stack-card] {height:var(--story-height)}
- [data-am-ready]>.romance-story>.romance-story__panel {top:min(0px,calc(100svh - var(--story-height)))}
- .romance-story__composition {display:flex;flex-direction:column;padding:60px 10px 70px;align-items:center}
+ .romance-story__composition {display:flex;flex-direction:column;padding:var(--story-heading-top) 10px 70px;align-items:center}
  .romance-story__heading {position:relative;inset:auto;width:100%;max-width:650px;order:0}
  .romance-story__heading h3 {font-size:clamp(40px,5.5vw,66px);max-width:600px;margin:22px auto 30px;line-height:1.01}
  .romance-story__photo {display:none}
@@ -157,4 +168,16 @@
 }
 @media(max-width:1100px) and (prefers-reduced-motion:no-preference){
  [data-am-ready]>.romance-story:not(:last-child) {height:calc(2 * var(--story-height) + 5vh)}
+}
+/* Let the text scroll normally when the viewport is too short for the composition. */
+@media(max-width:1100px) and (max-height:680px), (min-width:1101px) and (max-height:480px), (min-aspect-ratio:3/1){
+ [data-am-ready]>.romance-story,
+ [data-am-ready]>.romance-story:not(:last-child) {height:auto;margin-bottom:0}
+ [data-am-ready]>.romance-story>.romance-story__panel {position:relative;top:auto;transform:none}
+ .romance-story__panel::after {opacity:0!important}
+}
+@media(max-width:1100px) and (max-height:680px){
+ .romance-story {min-height:0}
+ .romance-story__panel[data-am-stack-card] {height:auto}
+ .romance-story__composition {min-height:0}
 }
