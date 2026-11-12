@@ -1,0 +1,42 @@
+/* Wedding mobile editorial story. No style can affect desktop. */
+@media (max-width:767px) and (prefers-reduced-motion:no-preference) {
+  #main [data-wm-entry="title"] .wm-title-word {display:inline-block;white-space:nowrap}
+  #main [data-wm-entry="title"] .wm-letter {
+    display:inline-block;opacity:.12;transform:translateY(.14em);
+    transition:opacity .95s cubic-bezier(.22,1,.36,1) var(--wm-delay,0ms),
+      transform .95s cubic-bezier(.22,1,.36,1) var(--wm-delay,0ms);
+  }
+  #main [data-wm-entry="title"].wm-in .wm-letter {opacity:1;transform:none}
+  /* Keep the original character reveal, with a softer mobile entry. */
+  #main [data-am-text][data-am-ready]:not([data-am-text="scrub"]) .am-char {
+    opacity:.12;transform:translateY(.14em);
+    transition:opacity .95s cubic-bezier(.22,1,.36,1) var(--am-delay,0ms),
+      transform .95s cubic-bezier(.22,1,.36,1) var(--am-delay,0ms);
+  }
+  #main [data-am-text][data-am-ready].am-inview:not([data-am-text="scrub"]) .am-char {opacity:1;transform:none}
+  #main [data-wm-reading] .wm-reading-word {
+    opacity:var(--wm-opacity,1);
+    transition:opacity .28s ease-out;
+  }
+  #main [data-wm-reading].wm-reading-done .wm-reading-word {opacity:1}
+  #main img[data-wm-entry="photo"] {
+    opacity:.12;clip-path:inset(8% 0 9% 0);scale:1.035;
+    transition:opacity .85s cubic-bezier(.22,1,.36,1),clip-path 1.15s cubic-bezier(.22,1,.36,1),scale 1.5s cubic-bezier(.22,1,.36,1);
+  }
+  #main img[data-wm-entry="photo"].wm-in {opacity:1;clip-path:inset(0);scale:1}
+  #main [data-wm-entry="action"] {opacity:.3;translate:0 9px;transition:opacity .65s ease,translate .85s cubic-bezier(.22,1,.36,1)}
+  #main [data-wm-entry="action"].wm-in,#main [data-wm-entry="action"]:focus-visible {opacity:1;translate:0 0}
+  /* The photo adapter owns mobile entry only; do not compound the destination
+     wrapper's existing fade with another fade inside it. */
+  #main .romance-editorial__image[data-am-ready] {opacity:1;transform:none;transition:none}
+  #main .romance-editorial__image[data-am-ready] img[data-wm-entry] {transform:none}
+  /* A natural reading flow on phones rather than the desktop pin/handoff. */
+  .page-home #main .romance-possibilities__stage[data-am-ready] > .romance-story {
+    height:auto;min-height:0;margin-bottom:0;
+  }
+  .page-home #main .romance-possibilities__stage[data-am-ready] > .romance-story > .romance-story__panel {
+    position:relative;top:auto;transform:none;height:auto;
+  }
+  .page-home #main .romance-story__panel::after {opacity:0!important}
+  .page-home #main .romance-story__composition {min-height:0;padding-bottom:60px}
+}

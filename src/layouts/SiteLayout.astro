@@ -42,6 +42,7 @@ const shareImageAlt = "An outdoor wedding aisle lined with white flowers beneath
     <meta name="twitter:image:alt" content={shareImageAlt} />
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="stylesheet" href={asset("atrezzo-core/nav/atrezzo-navigation-01.css")} />
+    <link rel="stylesheet" media="(max-width: 767px)" href={asset("assets/motion/mobile-editorial.css")} />
     <link rel="stylesheet" href={asset("atrezzo-core/veil/atrezzo-transitions.css")} />
     <link rel="stylesheet" href={asset("atrezzo-core/buttons/atrezzobuttons-01.css")} />
     {(homeScroll || editorialExpand) && <link rel="stylesheet" href={asset("atrezzo-core/scroll01/atrezzo-scroll-sections.css")} />}
@@ -106,6 +107,7 @@ const shareImageAlt = "An outdoor wedding aisle lined with white flowers beneath
     {editorialExpand && <script is:inline>
       window.AtrezzoScrollSections?.init(document.getElementById("services-opening"));
     </script>}
+    <script is:inline type="module" src={asset("assets/motion/mobile-editorial.js")}></script>
     <script is:inline src={asset("atrezzo-core/veil/atrezzo-transitions.js")}></script>
     <script is:inline>
       if (window.AtrezzoTransitions) {
