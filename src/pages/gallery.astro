@@ -8,7 +8,7 @@ import '../styles/gallery.css';
 
 const base = import.meta.env.BASE_URL;
 ---
-<SiteLayout title={copy.title} description={copy.intro} page="gallery" editorialMotion>
+<SiteLayout title="Wedding Inspiration Gallery" description="Browse wedding inspiration for ceremonies, celebrations, floral details, atmosphere and the moments in between." page="gallery" editorialMotion>
   <header class="gallery-opening">
     <div class="gallery-opening__image" data-am-parallax><img src={media.table.src} alt={media.table.alt} fetchpriority="high" /></div>
     <div class="gallery-opening__type">
@@ -40,7 +40,7 @@ const base = import.meta.env.BASE_URL;
                   <span class="gallery-photo__crop" data-am-parallax>
                     <img src={media[key].src} alt={media[key].alt} loading="lazy" decoding="async" />
                   </span>
-                  <span class="gallery-photo__open" aria-hidden="true">↗</span>
+                  <span class="gallery-photo__open" aria-hidden="true">View</span>
                 </a>
                 <figcaption>{chapter.captions[index]}</figcaption>
               </figure>
@@ -53,13 +53,13 @@ const base = import.meta.env.BASE_URL;
   <dialog class="gallery-dialog" aria-labelledby="gallery-dialog-title">
     <div class="gallery-dialog__bar">
       <p id="gallery-dialog-title" data-gallery-title>Editorial photograph</p>
-      <button type="button" data-gallery-close autofocus>Close <span aria-hidden="true">×</span></button>
+      <button type="button" data-gallery-close autofocus>Close</button>
     </div>
     <figure><img data-gallery-image alt="" /><figcaption data-gallery-caption aria-live="polite"></figcaption></figure>
     <div class="gallery-dialog__controls" aria-label="Photograph controls">
-      <button type="button" data-gallery-prev>← <span class="sr-only">Previous photograph</span></button>
+      <button type="button" class="control-chevron control-chevron--prev" data-gallery-prev aria-label="Previous photograph"></button>
       <span data-gallery-position></span>
-      <button type="button" data-gallery-next><span class="sr-only">Next photograph</span> →</button>
+      <button type="button" class="control-chevron" data-gallery-next aria-label="Next photograph"></button>
     </div>
   </dialog>
   <section class="inner-invitation" aria-labelledby="gallery-invitation">

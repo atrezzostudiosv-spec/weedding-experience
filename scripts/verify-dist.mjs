@@ -11,16 +11,38 @@ let missing=[];
 for(const path of paths){if(!existsSync(join(root,path))) missing.push(path)}
 if(missing.length){console.error('Missing build outputs:',missing.join(', '));process.exit(1)}
 const base='/weedding-experience/';
+const site='https://atrezzostudiosv-spec.github.io';
+const titles=new Set(), descriptions=new Set();
 for(const path of paths.filter(p=>p.endsWith('.html'))){
  const h=readFileSync(join(root,path),'utf8');
  if(!h.includes('noindex,nofollow')) throw new Error('Missing noindex on '+path);
- if(!h.includes(base+'contact/')) throw new Error('Missing base-aware Contact link on '+path);
- if(!h.includes('data-azn1-menu')) throw new Error('Missing Atrezzo menu on '+path);
- if(!h.includes('data-atz-link')) throw new Error('Missing Atrezzo transitions on '+path);
+ const nav=h.match(/<nav class="site-nav"[^>]*>(.*?)<\/nav>/s)?.[1];
+ for(const slug of ['', 'about/', 'services/', 'gallery/', 'contact/']){
+   if(!nav?.includes(`href="${base+slug}"`)) throw new Error('Missing primary navigation link on '+path+': '+slug);
+ }
+ const slug=path.replace(/index\.html$/, '');
+ if(!nav.includes(`href="${base+slug}" aria-current="page"`) || !nav.includes('data-atz-effect="veil"')){
+   throw new Error('Missing active link or VEIL transition on '+path);
+ }
+ const canonical=site+base+slug;
+ if(!h.includes(`rel="canonical" href="${canonical}"`) || !h.includes(`property="og:url" content="${canonical}"`)){
+   throw new Error('Missing canonical URL on '+path);
+ }
+ const title=h.match(/<title>([^<]+)<\/title>/)?.[1];
+ const description=h.match(/<meta name="description" content="([^"]+)"/)?.[1];
+ if(!title || !description || titles.has(title) || descriptions.has(description)){
+   throw new Error('Missing or duplicate metadata on '+path);
+ }
+ titles.add(title);
+ descriptions.add(description);
+ const shareImage=site+base+'assets/video/wedding-hero-poster.jpg';
+ if(!h.includes(`property="og:image" content="${shareImage}"`) || !h.includes(`name="twitter:image" content="${shareImage}"`) || !h.includes('name="twitter:card" content="summary_large_image"')){
+   throw new Error('Missing social preview metadata on '+path);
+ }
 }
 const home=readFileSync(join(root,'index.html'),'utf8');
 if(!home.includes('data-ats-effect="expand"'))throw new Error('Home missing approved Expand');
-console.log('PASS: five static routes, base-aware links, Atrezzo core assets, noindex, scene markup');
+console.log('PASS: five static routes, primary navigation, canonical URLs, social cards, noindex, scene markup');
 
 if(!home.includes("<video")||!home.includes("wedding-hero-preview.mp4")) throw new Error("Hero video missing");
 if(home.includes("hero__content")||home.includes("hero__top")) throw new Error("Unexpected text overlay in Hero");
