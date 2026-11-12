@@ -18,7 +18,7 @@ const titles=new Set(), descriptions=new Set();
 for(const path of paths.filter(p=>p.endsWith('.html'))){
  const h=readFileSync(join(root,path),'utf8');
  if(!h.includes('noindex,nofollow')) throw new Error('Missing noindex on '+path);
- if(!h.includes(base+'assets/motion/mobile-editorial.js') || !h.includes(base+'assets/motion/mobile-editorial.css') || !h.includes('media="(max-width: 767px)"')) throw new Error('Missing mobile editorial assets on '+path);
+ if(!h.includes(base+'assets/motion/mobile-editorial.js') || !h.includes(base+'assets/motion/mobile-editorial.css')) throw new Error('Missing responsive editorial assets on '+path);
  if(/AN ATREZZO EDITORIAL CONCEPT|header-kicker/i.test(h)) throw new Error('Obsolete header label on '+path);
  for(const [rel,asset] of [['icon','favicon-32.png'],['icon','favicon.svg'],['apple-touch-icon','apple-touch-icon.png']]){
    if(!h.match(new RegExp('<link[^>]*rel="'+rel+'"[^>]*href="'+base+'assets/brand/'+asset.replaceAll('.','[.]')+'"[^>]*>'))) throw new Error('Missing favicon link on '+path+': '+asset);

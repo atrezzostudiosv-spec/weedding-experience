@@ -1,4 +1,4 @@
-/* Wedding-specific mobile presentation adapter.
+/* Wedding-specific editorial presentation adapter.
  * ATZ-MOT-001 entry rhythm for new title text; the existing data-am-text engine
  * retains ownership of its own characters. Paragraphs use a readable scroll scrub
  * inspired by ATZ-MOT-002, with a monotonic word reveal. No core edits or dependencies.
@@ -81,7 +81,15 @@ function splitText(el, isTitle) {
   return {tokens, restore: () => changes.reverse().forEach(fn => fn())};
 }
 
-function mount(main) {
+export function editorialMode(width, reduced) {
+  if (reduced) return null;
+  if (width <= 767) return 'mobile';
+  if (width >= 1101) return 'desktop';
+  return null;
+}
+
+function mount(main, mode) {
+  const mobileMode = mode === 'mobile';
   let raf = 0;
   const cleanups = [], active = new Set(), reading = new Map();
   const visible = (el) => el.getClientRects().length > 0;
@@ -144,7 +152,7 @@ function mount(main) {
     else if (r.bottom <= 0) el.classList.add('wm-in');
     else enter.observe(el);
   }
-  for (const el of main.querySelectorAll(titles)) {
+  if (mobileMode) for (const el of main.querySelectorAll(titles)) {
     if (!visible(el) || el.hasAttribute('data-am-text')) continue;
     const split = splitText(el,true);
     if (!split.tokens.length) continue;
@@ -164,8 +172,10 @@ function mount(main) {
     paint(el,r.bottom <= 0 ? 1 : readingProgress(r.top,r.height,innerHeight));
     if (reading.get(el).progress < 1) readObserver.observe(el);
   }
-  for (const el of main.querySelectorAll(photos)) mark(el,'photo');
-  for (const el of main.querySelectorAll(actions)) mark(el,'action');
+  if (mobileMode) {
+    for (const el of main.querySelectorAll(photos)) mark(el,'photo');
+    for (const el of main.querySelectorAll(actions)) mark(el,'action');
+  }
   function focusReveal(event) {
     const el = event.target.closest('[data-wm-entry]') || event.target.querySelector?.('[data-wm-entry]');
     if(el) {el.classList.add('wm-in');enter.unobserve(el);}
@@ -185,15 +195,20 @@ function mount(main) {
   };
 }
 if (typeof window !== 'undefined' && typeof IntersectionObserver !== 'undefined') {
-  const mobile = matchMedia('(max-width: 767px) and (prefers-reduced-motion: no-preference)');
-  let unmount = null;
+  const mobile = matchMedia('(max-width: 767px)');
+  const desktop = matchMedia('(min-width: 1101px)');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  let unmount = null, currentMode = null;
   function update() {
-    if (mobile.matches && !unmount) {
-      const main = document.getElementById('main');
-      if(main) unmount = mount(main);
-    } else if (!mobile.matches && unmount) {unmount();unmount=null;}
+    // Use the same media-query breakpoints as the existing site, including scrollbar widths.
+    const next = editorialMode(mobile.matches ? 767 : desktop.matches ? 1101 : 900, reduce.matches);
+    if (next === currentMode) return;
+    if (unmount) {unmount();unmount=null;}
+    currentMode = next;
+    const main = document.getElementById('main');
+    if(next && main) unmount = mount(main,next);
   }
-  mobile.addEventListener('change',update);
+  for(const media of [mobile, desktop, reduce]) media.addEventListener('change',update);
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded',update,{once:true});
   else update();
 }
