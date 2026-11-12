@@ -1,18 +1,51 @@
 ---
-import SiteLayout from "../layouts/SiteLayout.astro";
-import PrimaryAction from "../components/PrimaryAction.astro";
-import {images} from "../data/site.js";
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PrimaryAction from '../components/PrimaryAction.astro';
+import { frontmatter as copy } from '../../docs/ABOUT-EDITORIAL-MASTER.md';
+import { editorialMedia as media } from '../data/editorial-media.js';
+import '../styles/editorial-internal.css';
+import '../styles/about.css';
+
 const base = import.meta.env.BASE_URL;
 ---
-<SiteLayout title="The Philosophy" description="The editorial perspective behind The Wedding Experience concept." page="about">
-  <section class="editorial-page about-layout" aria-labelledby="page-title">
-    <div class="editorial-page__copy">
-      <span class="section-label">02 / THE PHILOSOPHY</span>
-      <h1 id="page-title">An eye for<br/><em>the meaningful.</em></h1>
-      <p>Considered ideas. Quiet elegance. Celebrations imagined around the feelings we never forget.</p>
-      <PrimaryAction href={base + "contact/"} label="Start a conversation" subtle />
+<SiteLayout title={copy.title} description={copy.openingNote} page="about" editorialMotion>
+  <header class="philosophy-opening">
+    <div class="inner-wrap">
+      <span class="section-label">{copy.label}</span>
+      <h1 class="inner-display">{copy.opening}<br/><em data-am-text>{copy.openingEmphasis}</em></h1>
+      <p>{copy.openingNote}</p>
     </div>
-    <figure class="editorial-page__visual"><img src={images.details} alt="Illustrative wedding table setting with flowers and candles." loading="lazy" /><figcaption>Editorial inspiration · demonstration imagery</figcaption></figure>
+  </header>
+
+  <div class="philosophy-chapters">
+    {copy.chapters.map((chapter, i) => (
+      <section class:list={['philosophy-chapter', 'philosophy-chapter--' + chapter.photo]} aria-labelledby={'philosophy-chapter-' + i}>
+        <div class="philosophy-chapter__image" data-am-parallax>
+          <img src={media[chapter.photo].src} alt={media[chapter.photo].alt} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+        </div>
+        <div class="philosophy-chapter__content inner-wrap">
+          <h2 class="inner-display" id={'philosophy-chapter-' + i} aria-label={chapter.title}>
+            <span aria-hidden="true">{chapter.lead}</span><em data-am-text aria-hidden="true">{chapter.accent}</em>
+          </h2>
+          <p>{chapter.copy}</p>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <section class="philosophy-connection inner-wrap" aria-labelledby="human-title">
+    <header>
+      <span class="section-label">{copy.connectionLabel}</span>
+      <h2 class="inner-display" id="human-title" data-am-text>{copy.connectionTitle}</h2>
+    </header>
+    <figure class="philosophy-connection__portrait" data-am-parallax><img src={media.hands.src} alt={media.hands.alt} loading="lazy" decoding="async" /></figure>
+    <p>{copy.connectionCopy}</p>
+    <figure class="philosophy-connection__detail" data-am-parallax><img src={media.dance.src} alt={media.dance.alt} loading="lazy" decoding="async" /></figure>
   </section>
-  <section class="after-page"><span class="section-label">A note on this concept</span><p>The identity, founder story and experience of the future business are not yet confirmed. This page explores a visual philosophy rather than claiming a biography.</p></section>
+
+  <section class="inner-invitation" aria-labelledby="about-invitation">
+    <h2 id="about-invitation" class="inner-display">{copy.closingTitle}</h2>
+    <p>{copy.closing}</p>
+    <PrimaryAction href={base + 'contact/'} label={copy.cta} />
+  </section>
 </SiteLayout>

@@ -1,0 +1,72 @@
+.page-gallery .site-header { color:#fff; }
+.page-gallery .site-header__inner { border-color:#fff6; }
+.gallery-opening { min-height:clamp(560px,67svh,810px); position:relative; isolation:isolate; display:grid; place-items:center; padding:130px var(--w-gutter) 55px; overflow:clip; color:#fff; background:#2b251f; }
+.gallery-opening__image { position:absolute; inset:-5% 0; z-index:-2; }
+.gallery-opening__image img { object-position:center 48%; }
+.gallery-opening::after { content:''; position:absolute; inset:0; z-index:-1; background:#14110d72; }
+.gallery-opening__type { text-align:center; }
+.gallery-opening__type h1 { margin-top:24px; font-size:clamp(54px,7.8vw,120px); }
+.gallery-preface { padding-block:clamp(55px,9vw,133px); text-align:center; }
+.gallery-preface p { margin:10px auto; }
+.gallery-preface .gallery-preface__lead { font:400 clamp(28px,3.8vw,60px)/1.07 var(--w-serif); letter-spacing:-.045em; }
+.gallery-editorial { display:grid; grid-template-columns:164px minmax(0,1fr); gap:clamp(22px,4vw,66px); align-items:start; padding-bottom:clamp(80px,9vw,165px); }
+.gallery-index { position:sticky; top:7svh; display:flex; flex-direction:column; align-items:stretch; gap:4px; padding:12px 0; background:#fff; z-index:3; }
+.gallery-index a { color:#625d52; text-decoration:none; font-size:14px; display:flex; align-items:center; min-height:44px; padding:6px 10px; border-left:1px solid var(--w-line); white-space:nowrap; }
+.gallery-index a[aria-current], .gallery-index a:hover { color:#111; border-color:#8f7542; }
+.gallery-index a[aria-current] { font-weight:700; }
+.gallery-collection { display:grid; gap:clamp(80px,11vw,170px); min-width:0; }
+.gallery-chapter { scroll-margin-top:26px; }
+.gallery-chapter header { margin-bottom:clamp(28px,4vw,64px); }
+.gallery-chapter h2 { font-size:clamp(48px,6.2vw,100px); }
+.gallery-chapter header p { margin:16px 0 0; }
+.gallery-chapter__photos { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:clamp(12px,1.7vw,25px); align-items:end; }
+.gallery-figure { margin:0; min-width:0; }
+.gallery-figure--1 { grid-column:1/9; grid-row:1; }
+.gallery-figure--2 { grid-column:8/13; grid-row:1; z-index:1; transform:translateY(13%); }
+.gallery-figure--3 { grid-column:4/11; grid-row:2; margin-top:3.5vw; }
+.gallery-chapter--celebration .gallery-figure--1, .gallery-chapter--atmosphere .gallery-figure--1 { grid-column:5/13; }
+.gallery-chapter--celebration .gallery-figure--2, .gallery-chapter--atmosphere .gallery-figure--2 { grid-column:1/6; }
+.gallery-chapter--details .gallery-figure--1 { grid-column:1/7; }
+.gallery-chapter--details .gallery-figure--2 { grid-column:6/13; }
+.gallery-photo { display:block; position:relative; overflow:hidden; background:#e9e1d6; }
+.gallery-photo__crop { display:block; height:clamp(310px,43vw,690px); }
+.gallery-figure--2 .gallery-photo__crop { height:clamp(190px,28vw,440px); }
+.gallery-figure--3 .gallery-photo__crop { height:clamp(250px,33vw,520px); }
+.gallery-chapter--details .gallery-figure--2 .gallery-photo__crop { height:clamp(280px,34vw,520px); }
+.gallery-photo__crop img { display:block; width:100%; height:100%; object-fit:cover; }
+.gallery-photo__open { position:absolute; right:12px; bottom:12px; border-radius:50%; background:#fff; color:#111; width:44px; height:44px; display:grid; place-items:center; font-size:18px; transition:background .2s; }
+.gallery-photo:is(:hover,:focus-visible) .gallery-photo__open { background:#d2bc8b; }
+.gallery-figure figcaption { padding-top:10px; font-size:11px; letter-spacing:.07em; color:#625d52; }
+.gallery-dialog { margin:auto; width:min(1060px, calc(100% - 32px)); max-height:calc(100dvh - 24px); padding:12px 18px; background:#181613; color:#fff; border:1px solid #b59a6066; }
+.gallery-dialog::backdrop { background:#110e0cdd; }
+.gallery-dialog[open] { animation:gallery-dialog-in .25s var(--am-ease-out) both; }
+@keyframes gallery-dialog-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+html:has(.gallery-dialog[open]) { overflow:hidden; }
+.gallery-dialog__bar, .gallery-dialog__controls { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.gallery-dialog__bar p { margin:0; font:400 clamp(18px,2vw,26px) var(--w-serif); }
+.gallery-dialog button { cursor:pointer; color:white; min-height:44px; min-width:44px; padding:6px 12px; background:transparent; border:1px solid #fff6; }
+.gallery-dialog figure { margin:10px 0; }
+.gallery-dialog figure img { display:block; margin:auto; width:100%; height:min(66dvh,680px); object-fit:contain; touch-action:pan-y pinch-zoom; background:#110f0c; }
+.gallery-dialog figcaption { padding:10px 0 0; text-align:center; font-size:14px; }
+.gallery-dialog__controls { justify-content:center; }
+.gallery-dialog__controls span:not(.sr-only) { min-width:58px; text-align:center; font-size:13px; }
+@media (max-width:800px) {
+  .gallery-editorial { display:block; }
+  .gallery-index { top:0; flex-direction:row; overflow:auto; padding:8px 0; margin-bottom:24px; }
+  .gallery-index a { border-left:0; border-bottom:1px solid var(--w-line); padding-inline:10px; }
+  .gallery-index a[aria-current] { border-color:#8f7542; }
+  .gallery-chapter { scroll-margin-top:76px; }
+  .gallery-opening { min-height:65svh; }
+}
+@media (max-width:560px) {
+  .gallery-opening__type h1 { font-size:clamp(45px,12vw,72px); }
+  .gallery-chapter__photos { grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .gallery-chapter .gallery-figure--1 { grid-column:1/7; grid-row:1; }
+  .gallery-chapter .gallery-figure--2 { grid-column:3/7; grid-row:2; transform:none; margin-top:-34px; outline:6px solid white; }
+  .gallery-chapter:nth-child(even) .gallery-figure--2 { grid-column:1/5; }
+  .gallery-chapter .gallery-figure--3 { grid-column:1/6; grid-row:3; margin-top:20px; }
+  .gallery-chapter .gallery-photo__crop { height:clamp(285px,98vw,470px); }
+  .gallery-chapter .gallery-figure--2 .gallery-photo__crop { height:clamp(160px,55vw,270px); }
+  .gallery-dialog { width:calc(100% - 16px); padding:8px 10px; }
+}
+@media (prefers-reduced-motion:reduce) { .gallery-dialog[open] { animation:none; } .gallery-photo__open { transition:none; } }
