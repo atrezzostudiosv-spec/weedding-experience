@@ -1,0 +1,18 @@
+/* Loaded only on the four internal routes. Shared tokens come from SiteLayout. */
+.inner-wrap { width:min(100% - 2 * var(--w-gutter), 1440px); margin-inline:auto; }
+.inner-display { margin:0; font:400 clamp(42px, 6vw, 108px)/.99 var(--w-serif); letter-spacing:-.064em; text-wrap:balance; }
+.inner-lead { font:italic clamp(22px, 2.35vw, 40px)/1.18 var(--w-serif); color:#786544; }
+.inner-wrap p, .inner-invitation p { max-width:54ch; font-size:clamp(15px, 1.2vw, 19px); line-height:1.62; }
+.inner-invitation { padding:clamp(86px, 11vw, 174px) var(--w-gutter); text-align:center; background:#111; color:#fff; }
+.inner-invitation h2 { max-width:940px; margin-inline:auto; }
+.inner-invitation p { color:#d4d0ca; margin:24px auto 35px; }
+.inner-invitation .ab-directional { background:#fff; color:#111; border-color:#fff; }
+.inner-details { margin-top:26px; max-width:50ch; }
+.inner-details summary { position:relative; cursor:pointer; display:inline-flex; align-items:center; gap:22px; min-height:44px; padding:8px 2px; border-bottom:1px solid var(--w-gold); font-size:14px; }
+.inner-details summary::after { content:'+'; font-size:20px; line-height:1; color:#766342; }
+.inner-details[open] summary::after { content:'−'; }
+.inner-details summary::-webkit-details-marker { display:none; }
+.inner-details p { margin:12px 0 0; }
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+@media (max-width:650px) { .inner-display { font-size:clamp(36px, 10vw, 65px); } }
+@media (prefers-reduced-motion:reduce) { html:has(.inner-wrap) { scroll-behavior:auto; } }

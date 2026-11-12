@@ -85,3 +85,14 @@ Two additional illustrative photographs, downloaded locally for stable loading:
 | `public/assets/home/holding-hands.jpg` | Alexander Mass | https://unsplash.com/photos/bride-and-groom-holding-hands-with-wedding-veil-vAqBUUxfYk8 | Free Unsplash License, checked 2026-11-11 | Centre crop; hands, story and editorial strip |
 
 License: https://unsplash.com/license. These are illustrative stock scenes, not client work or endorsements. No reference-site media or proprietary code was copied into the website. Existing registered decorative stock imagery and approved hero are retained.
+
+## Internal pages — editorial additions
+
+The existing registered ceremony, reception, details, veil and hands photographs are reused. These additional photographs are illustrative, without portfolio attribution. Their source pages identify them as available under the [Unsplash License](https://unsplash.com/license).
+
+| CDN photo | Photographer and source | Use |
+|---|---|---|
+| `photo-1769230387364-8b0c2b63e18b` | [Samuel Cruz](https://unsplash.com/photos/couple-dancing-at-outdoor-wedding-reception-under-string-lights-k0SyhTGHBjU) | Celebration, coordination, human connection |
+| `photo-1769230366356-beca3c698fe0` | [Samuel Cruz](https://unsplash.com/photos/a-couple-dances-at-a-wedding-reception-with-guests-watching-wJll9v7WLiU) | The people around the celebration |
+| `photo-1773370812331-4e534dcf0ce1` | [Jen Vazquez](https://unsplash.com/photos/wedding-table-setting-with-floral-arrangements-and-candles-IAXH4tMEx_s) | Table design and floral detail |
+| `photo-1707333515825-c07061a97e5a` | [Francesco Liotti](https://unsplash.com/photos/a-table-topped-with-a-vase-filled-with-flowers-and-candles-lo8yChRYh4Q) | Candlelight and evening atmosphere |

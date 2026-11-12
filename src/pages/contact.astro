@@ -1,22 +1,65 @@
 ---
-import SiteLayout from "../layouts/SiteLayout.astro";
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { frontmatter as copy } from '../../docs/CONTACT-EDITORIAL-MASTER.md';
+import '../styles/editorial-internal.css';
+import '../styles/contact.css';
+
+const fields = copy.fields;
 ---
-<SiteLayout title="Begin a Conversation" description="Design-only contact experience; submissions are not yet enabled for this concept website." page="contact">
-  <section class="contact-layout" aria-labelledby="page-title">
-    <div class="contact-layout__intro">
-      <span class="section-label">05 / YOUR INVITATION</span>
-      <h1 id="page-title">Tell us about<br/><em>your moment.</em></h1>
-      <p>A thoughtful conversation is where every memorable occasion begins.</p>
-      <p class="demo-disclosure">This form is a design preview. It is not connected to the client and does not send messages.</p>
+<SiteLayout title={copy.title} description={copy.intro} page="contact">
+  <section class="inquiry-page" aria-labelledby="inquiry-title">
+    <header class="inquiry-opening inner-wrap">
+      <span class="section-label"><span class="gold-line" aria-hidden="true"></span>{copy.label}</span>
+      <h1 id="inquiry-title" class="inner-display">{copy.opening}<br/><em>{copy.openingEmphasis}</em></h1>
+      <p>{copy.intro} {copy.copy}</p>
+    </header>
+    <div class="inquiry-body">
+      <h2 id="inquiry-form-title">{copy.formTitle}</h2>
+      <p class="inquiry-disclosure" id="contact-disclosure">{copy.disclosure}</p>
+      <p class="inquiry-hint">{copy.formHint}</p>
+      <form method="dialog" aria-labelledby="inquiry-form-title" aria-describedby="contact-disclosure">
+        <div class="inquiry-fields">
+          <div class="inquiry-field inquiry-field--full">
+            <label for="inquiry-name">{fields.name}</label>
+            <input id="inquiry-name" type="text" autocomplete="name" required />
+          </div>
+          <div class="inquiry-field">
+            <label for="inquiry-email">{fields.email}</label>
+            <input id="inquiry-email" type="email" autocomplete="email" required />
+          </div>
+          <div class="inquiry-field">
+            <label for="inquiry-phone">{fields.phone} <span>(optional)</span></label>
+            <input id="inquiry-phone" type="tel" autocomplete="tel" />
+          </div>
+          <div class="inquiry-field">
+            <label for="inquiry-type">{fields.type}</label>
+            <select id="inquiry-type" required>
+              <option value="">Select an occasion</option>
+              {copy.options.map((option) => <option>{option}</option>)}
+            </select>
+          </div>
+          <div class="inquiry-field">
+            <label for="inquiry-date">{fields.date} <span>(optional)</span></label>
+            <input id="inquiry-date" type="date" />
+          </div>
+          <div class="inquiry-field">
+            <label for="inquiry-location">{fields.location} <span>(optional)</span></label>
+            <input id="inquiry-location" type="text" />
+          </div>
+          <div class="inquiry-field">
+            <label for="inquiry-guests">{fields.guests} <span>(optional)</span></label>
+            <input id="inquiry-guests" type="number" min="1" step="1" inputmode="numeric" />
+          </div>
+          <div class="inquiry-field inquiry-field--full">
+            <label for="inquiry-vision">{fields.vision}</label>
+            <textarea id="inquiry-vision" rows="5" required></textarea>
+          </div>
+        </div>
+        <button type="button" class="ab-btn ab-directional inquiry-disabled" data-ab-directional data-ab-side="left" disabled aria-describedby="contact-disclosure">
+          <span class="ab-directional__fill" aria-hidden="true"></span>
+          <span class="ab-directional__inner">{copy.status}</span>
+        </button>
+      </form>
     </div>
-    <form class="contact-form" aria-label="Contact form design preview">
-      <div class="contact-form__row"><label for="contact-name">Your name <span>*</span></label><input id="contact-name" name="name" type="text" autocomplete="name" placeholder="How should we address you?" required /></div>
-      <div class="contact-form__row"><label for="contact-email">Email address <span>*</span></label><input id="contact-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required /></div>
-      <div class="contact-form__row"><label for="contact-type">Your occasion</label><select id="contact-type" name="eventType"><option value="">Select an occasion</option><option value="wedding">Wedding</option><option value="private">Private event</option><option value="other">Something else</option></select></div>
-      <div class="contact-form__row"><label for="contact-date">Event date (optional)</label><input id="contact-date" name="eventDate" type="date" /></div>
-      <div class="contact-form__row"><label for="contact-message">A little about your celebration</label><textarea id="contact-message" name="message" rows="4" placeholder="Tell us what you're imagining..."></textarea></div>
-      <button type="button" class="form-preview-button" disabled aria-describedby="contact-disclosure">Inquiry sending not yet available <span aria-hidden="true">↗</span></button>
-      <p id="contact-disclosure" class="contact-form__note">The contact destination and privacy notice will be configured when the client provides verified details.</p>
-    </form>
   </section>
 </SiteLayout>

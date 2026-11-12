@@ -1,18 +1,89 @@
 ---
-import SiteLayout from "../layouts/SiteLayout.astro";
-import PrimaryAction from "../components/PrimaryAction.astro";
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PrimaryAction from '../components/PrimaryAction.astro';
+import { frontmatter as copy } from '../../docs/SERVICES-EDITORIAL-MASTER.md';
+import { editorialMedia as media } from '../data/editorial-media.js';
+import '../styles/editorial-internal.css';
+import '../styles/services.css';
+
 const base = import.meta.env.BASE_URL;
-const services = [
-  ["01", "Weddings", "A thoughtful framework for a day that feels entirely personal."],
-  ["02", "Private Events", "An intimate approach to gathering and celebration."],
-  ["03", "Event Design", "Atmosphere, composition and the beauty of small details."],
-  ["04", "Event Coordination", "A considered view of timing, flow and experience."]
-];
 ---
-<SiteLayout title="Services" description="Provisional service concepts for an Atrezzo Studios wedding website proposal." page="services">
-  <section class="services-header" aria-labelledby="page-title"><span class="section-label">03 / THE POSSIBILITIES</span><h1 id="page-title">Thoughtfully<br/><em>celebrated.</em></h1><p>Four provisional directions — presented as a design concept until the client confirms her services.</p></section>
-  <section class="services-editorial" aria-label="Proposed services"><div class="services-editorial__heading"><span class="section-label">EXPLORE THE EXPERIENCE</span><span>01 — 04</span></div>
-    {services.map(([number, name, copy]) => <article class="service-line"><span>{number}</span><h2>{name}</h2><p>{copy}</p></article>)}
+<SiteLayout title={copy.title} description={copy.intro} page="services" editorialMotion editorialExpand>
+  <div class="ats-scope service-opening" id="services-opening">
+    <section class="ats-scene ats-scene--expand" data-ats-effect="expand" aria-labelledby="services-title">
+      <div class="ats-stage">
+        <div class="ats-center-photo ats-photo">
+          <img src={media.veil.src} alt={media.veil.alt} fetchpriority="high" />
+        </div>
+        <h1 id="services-title" class="service-opening__title" aria-label={copy.title}>
+          {copy.opening.map((word) => <><span aria-hidden="true">{word}</span>{' '} </>)}
+        </h1>
+        <p class="ats-title-overlay service-opening__subtitle">{copy.heroLine}</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="service-manifesto inner-wrap" aria-labelledby="service-manifesto-title">
+    <span class="section-label">{copy.label}</span>
+    <h2 id="service-manifesto-title" class="inner-display"><em data-am-text="scrub">{copy.manifestoTitle}</em></h2>
+    <p>{copy.intro}</p>
+    <nav aria-label="Service chapters" class="chapter-links">
+      {copy.services.map((item) => <a href={'#' + item.id}>{item.title}</a>)}
+      <a href="#planning">The Planning Process</a>
+    </nav>
   </section>
-  <section class="services-end"><span class="section-label">YOUR NEXT CHAPTER</span><h2>Something worth gathering for.</h2><PrimaryAction href={base + "contact/"} label="Begin your inquiry"/></section>
+
+  <section class="service-chapters inner-wrap" aria-label={copy.chapterTitle}>
+    {copy.services.map((item, i) => (
+      <article class:list={['service-chapter', 'service-chapter--' + item.id]} id={item.id} aria-labelledby={item.id + '-title'}>
+        <figure class="service-chapter__lead" data-am-burned>
+          <img src={media[item.photo].src} alt={media[item.photo].alt} loading="lazy" decoding="async" />
+        </figure>
+        <div class="service-chapter__copy">
+          <span class="section-label">{String(i + 1).padStart(2, '0')}</span>
+          <h2 class="inner-display" id={item.id + '-title'}>{item.title}</h2>
+          <p class="inner-lead">{item.line}</p>
+          <p>{item.copy}</p>
+          <details class="inner-details"><summary>{copy.more}<span class="sr-only"> about {item.title}</span></summary><p>{item.detail}</p></details>
+        </div>
+        <figure class="service-chapter__detail" data-am-parallax>
+          <img src={media[item.detailPhoto].src} alt={media[item.detailPhoto].alt} loading="lazy" decoding="async" />
+        </figure>
+      </article>
+    ))}
+  </section>
+
+  <section id="planning" class="service-journey" aria-labelledby="planning-title">
+    <header class="service-journey__intro inner-wrap">
+      <span class="section-label">THE PLANNING PROCESS</span>
+      <h2 id="planning-title" class="inner-display">{copy.journeyTitle}</h2>
+      <p>{copy.journeyIntro}</p>
+    </header>
+    <div class="inner-wrap" data-am-journey data-am-ambassadors>
+      <div class="am-journey__sticky" aria-hidden="true">
+        {copy.steps.map((step, i) => <div data-am-journey-frame class:list={[i === 0 && 'am-active']}><img src={media[step.photo].src} alt="" loading="lazy" /></div>)}
+        <span class="journey-counter" data-am-journey-counter>01</span>
+      </div>
+      <div class="journey-steps" data-am-ambassador-track tabindex="0" role="region" aria-label="Planning stages">
+        {copy.steps.map((step, i) => (
+          <article data-am-journey-step class="journey-step">
+            <img class="journey-step__mobile" src={media[step.photo].src} alt={media[step.photo].alt} loading="lazy" />
+            <span class="section-label">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{step.title}</h3>
+            <p>{step.copy}</p>
+            <details class="inner-details"><summary>{copy.more}<span class="sr-only"> about {step.title}</span></summary><p>{step.detail}</p></details>
+          </article>
+        ))}
+      </div>
+      <div class="journey-controls" aria-label="Planning stage controls">
+        <button type="button" data-am-ambassador-prev aria-label="Previous planning stage">←</button>
+        <button type="button" data-am-ambassador-next aria-label="Next planning stage">→</button>
+      </div>
+    </div>
+  </section>
+  <section class="inner-invitation" aria-labelledby="services-invitation">
+    <h2 class="inner-display" id="services-invitation">{copy.closingTitle}</h2>
+    <p>{copy.closing}</p>
+    <PrimaryAction href={base + 'contact/'} label={copy.cta} />
+  </section>
 </SiteLayout>
