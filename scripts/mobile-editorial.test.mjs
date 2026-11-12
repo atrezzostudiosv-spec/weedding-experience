@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readingProgress,wordOpacity} from '../public/assets/motion/mobile-editorial.js';
+import {readingProgress,wordOpacity,editorialMode} from '../public/assets/motion/mobile-editorial.js';
 
 test('scroll reveal starts at entry and is fully readable by the reading position',()=>{
   assert.equal(readingProgress(900,180,800),0);
@@ -16,4 +16,15 @@ test('word order, readable baseline and full reveal',()=>{
 test('scroll progress never decreases when scrolling down',()=>{
   let prev=0;
   for(let top=900;top>=-100;top-=10){const p=readingProgress(top,300,800);assert.ok(p>=prev);prev=p;}
+});
+
+test('editorial mode follows phone and desktop breakpoints, with reduced motion disabled',()=>{
+  assert.equal(editorialMode(375,false),'mobile');
+  assert.equal(editorialMode(767,false),'mobile');
+  assert.equal(editorialMode(768,false),null);
+  assert.equal(editorialMode(1100,false),null);
+  assert.equal(editorialMode(1101,false),'desktop');
+  assert.equal(editorialMode(1440,false),'desktop');
+  assert.equal(editorialMode(1440,true),null);
+  assert.equal(editorialMode(375,true),null);
 });
